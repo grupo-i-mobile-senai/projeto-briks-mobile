@@ -6,7 +6,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <Image source={require('./assets/favicon.png')} style={styles.logo}/>
+      <Image source={require('./assets/logoBriks.svg')} style={styles.logo}/>
       
     </View>
   );
@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
   },
   logo:{
 
-    height: 100,
-    width: 100
+    height: 80,
+    width: 200
 
   }
 });
