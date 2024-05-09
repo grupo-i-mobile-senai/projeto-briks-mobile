@@ -1,6 +1,6 @@
 import { Image, View } from "react-native";
 import styles from "./TelaAberturaStyles";
-
+F
 const TelaAbertura = () => {
   return (
     <View style={styles.container}>
@@ -8,5 +8,6 @@ const TelaAbertura = () => {
     </View>
   );
 };
+
 
 export default TelaAbertura;

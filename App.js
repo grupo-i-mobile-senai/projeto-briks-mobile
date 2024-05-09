@@ -20,7 +20,7 @@ export default function App() {
     <View style={styles.container}>
 
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator >
           <Stack.Screen name="TelaAbertura" component={TelaAbertura} options={{title: 'TELA ABERTURA', headerShown: false}}/>
           <Stack.Screen name="TelaLogin" component={TelaLogin} options={{title: 'LOGIN'}}/>
         </Stack.Navigator>
