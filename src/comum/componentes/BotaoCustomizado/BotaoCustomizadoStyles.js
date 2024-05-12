@@ -3,8 +3,9 @@ import CORES from "../../constantes/cores";
 
 const styles = StyleSheet.create({
   botao: {
-    height: 40,
-    minWidth: 40,
+    height: 48,
+    Width: 40,
+    borderWidth: 1,
     borderRadius: 8,
     alignItems: "center",
     justifyContent: "center",
@@ -12,6 +13,7 @@ const styles = StyleSheet.create({
 
   botaoPrimario: {
     backgroundColor: CORES.PRIMARIA,
+    borderColor: CORES.PRIMARIA,
   },
 
   botaoSecundario: {
@@ -20,7 +22,6 @@ const styles = StyleSheet.create({
 
   botaoPadrao: {
     backgroundColor: CORES.LARANJA,
-    borderWidth: 1,
     borderColor: CORES.BRANCA,
   },
 

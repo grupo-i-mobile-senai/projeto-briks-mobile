@@ -1,11 +1,14 @@
 import { Text, View } from "react-native";
-import CampoTextoCustomizado from "../../comum/componentes/CampoTextoCustomizado/CampoTextoCustomizado";
+import { CampoTextoCustomizadoPrimario } from "../../comum/componentes/CampoTextoCustomizado/CampoTextoCustomizado";
 import styles from "./TelaLoginStyles";
 import LogoBriks from "../../comum/componentes/LogoBriks/LogoBriks";
 import BotaoCustomizado from "../../comum/componentes/BotaoCustomizado/BotaoCustomizado";
 import CORES from "../../comum/constantes/cores";
 
-const TelaLogin = () => {
+import TELAS from "../../comum/constantes/telas";
+
+
+const TelaLogin = (props) => {
   return (
     <View style={styles.container}>
       <View>
@@ -16,13 +19,13 @@ const TelaLogin = () => {
         {/* <Text style={styles.tituloEntrar}>Entrar</Text> */}
       </View>
 
-      <CampoTextoCustomizado
+      <CampoTextoCustomizadoPrimario
         style={styles.campoTextoLogin}
         label="CPF"
         inputMode="numeric"
         maxLength={11}
       />
-      <CampoTextoCustomizado
+      <CampoTextoCustomizadoPrimario
         style={styles.campoTextoLogin}
         label="Senha"
         secureTextEntry
@@ -30,13 +33,13 @@ const TelaLogin = () => {
 
       <BotaoCustomizado
         cor="primaria"
-        onPress={() => alert("estou funcionando!")}
+        onPress={() => {alert("estou funcionando!"); props.navigation.navigate(TELAS.TELA_PRINCIPAL)}}
       >
-        Entrar
+        ENTRAR
       </BotaoCustomizado>
 
-      <BotaoCustomizado onPress={() => alert("estou funcionando!")}>
-        Criar conta
+      <BotaoCustomizado onPress={() => props.navigation.navigate(TELAS.TELA_CADASTRO_USUARIO)}>
+        CADASTRAR
       </BotaoCustomizado>
     </View>
   );

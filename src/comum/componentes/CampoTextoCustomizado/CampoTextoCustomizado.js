@@ -1,13 +1,21 @@
 import { Text, TextInput, View } from "react-native";
 import styles from "./CampoTextoCustomizadoStyles";
 
-const CampoTextoCustomizado = (props) => {
+export const CampoTextoCustomizadoPrimario = (props) => {
   return (
     <View>
       <Text style={styles.labelTexto}>{props.label}</Text>
-      <TextInput style={styles.campoTexto} {...props} />
+      <TextInput style={styles.campoTextoPrimario} {...props} />
     </View>
   );
 };
 
-export default CampoTextoCustomizado;
+export const CampoTextoCustomizadoSecundario = (props) => {
+  return (
+    <View>
+      <Text style={styles.labelTexto}>{props.label}</Text>
+      <TextInput style={styles.campoTextoSecundario} {...props} />
+    </View>
+  );
+};
+

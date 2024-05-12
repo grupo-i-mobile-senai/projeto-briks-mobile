@@ -17,10 +17,14 @@ const styles = StyleSheet.create({
   //   color: CORES.TEXTO_CLARO,
   // },
   campoTextoLogin: {
-    borderBottomWidth: 2,
+    borderBottomWidth: 1,
+    height: 40,
+    padding: 8,
     borderBottomColor: CORES.BRANCA,
+    borderRadius: 8,
     color: CORES.TEXTO_CLARO,
-    fontSize:16
+    fontSize: 16,
+    marginBottom:16
   },
 });
 
