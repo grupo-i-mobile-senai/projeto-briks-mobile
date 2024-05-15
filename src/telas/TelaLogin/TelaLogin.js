@@ -20,13 +20,13 @@ const TelaLogin = (props) => {
       </View>
 
       <CampoTextoCustomizadoPrimario
-        style={styles.campoTextoLogin}
+        // style={styles.campoTextoLogin}
         label="CPF"
         inputMode="numeric"
         maxLength={11}
       />
       <CampoTextoCustomizadoPrimario
-        style={styles.campoTextoLogin}
+        // style={styles.campoTextoLogin}
         label="Senha"
         secureTextEntry
       />
