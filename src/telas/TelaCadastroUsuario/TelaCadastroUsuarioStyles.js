@@ -9,9 +9,9 @@ const styles = StyleSheet.create({
     gap: 16,
     backgroundColor: CORES.LARANJA,
   },
-  scrollView: {
-    flex: 1,
-  },
+  // scrollView: {
+  //   flex: 1,
+  // },
 });
 
 export default styles;
