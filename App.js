@@ -8,6 +8,11 @@ import TelaAbertura from "./src/telas/TelaAbertura/TelaAbertura";
 import TelaLogin from "./src/telas/TelaLogin/TelaLogin";
 import TelaPrincipal from "./src/telas/TelaPrincipal/TelaPrincipal";
 import TelaCadastroUsuario from "./src/telas/TelaCadastroUsuario/TelaCadastroUsuario";
+import TelaAnuncioDetalhado from "./src/telas/TelaAnuncioDetalhado/TelaAnuncioDetalhado";
+import TelaCadastroProduto from "./src/telas/TelaCadastroProduto/TelaCadastroProduto.js";
+import TelaPerfilUsuario from "./src/telas/TelaPerfilUsuario/TelaPerfilUsuario.js";
+import TelaCadastroServico from "./src/telas/TelaCadastroServico/TelaCadastroServico.js";
+import TelaMeusAnuncios from "./src/telas/TelaMeusAnuncios/TelaMeusAnuncios.js";
 
 const Stack = createStackNavigator();
 
@@ -26,6 +31,7 @@ export default function App() {
           screenOptions={{ cardStyle: { flex: 1 } }}
         >
           <Stack.Group>
+            {/* TELA ABERTURA */}
             <Stack.Screen
               name={TELAS.TELA_ABERTURA}
               component={TelaAbertura}
@@ -47,12 +53,47 @@ export default function App() {
             />
           </Stack.Group>
 
-          {/* TELA PRINCIPAL */}
-          <Stack.Screen
-            name={TELAS.TELA_PRINCIPAL}
-            component={TelaPrincipal}
-            options={{ title: "PRINCIPAL", headerLeft: false }}
-          />
+          <Stack.Group>
+            {/* TELA PRINCIPAL */}
+            <Stack.Screen
+              name={TELAS.TELA_PRINCIPAL}
+              component={TelaPrincipal}
+              options={{ title: "PRINCIPAL", headerLeft: false }}
+            />
+            {/* TELA ANUNCIO DETALHADO */}
+            <Stack.Screen
+              name={TELAS.TELA_ANUNCIO_DETALHADO}
+              component={TelaAnuncioDetalhado}
+              options={{ title: "ANUNCIO DETALHADO" }}
+            />
+            {/* TELA PERFIL USUARIO  */}
+            <Stack.Screen
+              name={TELAS.TELA_PERFIL_USUARIO}
+              component={TelaPerfilUsuario}
+              options={{ title: "PERFIL USUARIO" }}
+            />
+
+            {/* TELA CADASTRO PRODUTO  */}
+            <Stack.Screen
+              name={TELAS.TELA_CADASTRO_PRODUTO}
+              component={TelaCadastroProduto}
+              options={{ title: "CADASTRO PRODUTO" }}
+            />
+
+            {/* TELA CADASTRO SERVICO  */}
+            <Stack.Screen
+              name={TELAS.TELA_CADASTRO_SERVICO}
+              component={TelaCadastroServico}
+              options={{ title: "CADASTRO SERVICO" }}
+            />
+
+            {/* TELA MEUS ANUNCIOS */}
+            <Stack.Screen
+              name={TELAS.TELA_MEUS_ANUNCIOS}
+              component={TelaMeusAnuncios}
+              options={{ title: "MEUS ANUNCIOS" }}
+            />
+          </Stack.Group>
         </Stack.Navigator>
       </NavigationContainer>
 
