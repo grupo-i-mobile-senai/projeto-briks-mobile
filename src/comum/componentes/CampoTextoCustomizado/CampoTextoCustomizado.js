@@ -4,7 +4,7 @@ import styles from "./CampoTextoCustomizadoStyles";
 export const CampoTextoCustomizadoPrimario = (props) => {
   return (
     <View>
-      <Text style={styles.labelTexto}>{props.label}</Text>
+      <Text style={styles.labelTextoPrimario}>{props.label}</Text>
       <TextInput style={styles.campoTextoPrimario} {...props} />
     </View>
   );
@@ -13,7 +13,7 @@ export const CampoTextoCustomizadoPrimario = (props) => {
 export const CampoTextoCustomizadoSecundario = (props) => {
   return (
     <View>
-      <Text style={styles.labelTexto}>{props.label}</Text>
+      <Text style={styles.labelTextoSecundario}>{props.label}</Text>
       <TextInput style={styles.campoTextoSecundario} {...props} />
     </View>
   );

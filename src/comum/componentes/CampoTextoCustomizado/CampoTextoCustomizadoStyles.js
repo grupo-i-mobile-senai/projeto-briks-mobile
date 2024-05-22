@@ -20,8 +20,12 @@ const styles = StyleSheet.create({
     padding: 8,
     backgroundColor: CORES.BRANCA,
   },
-  labelTexto: {
+  labelTextoPrimario: {
     color: CORES.TEXTO_CLARO,
+    fontWeight: "bold",
+  },
+  labelTextoSecundario: {
+    color: CORES.TEXTO_PADRAO,
     fontWeight: "bold",
   },
 });

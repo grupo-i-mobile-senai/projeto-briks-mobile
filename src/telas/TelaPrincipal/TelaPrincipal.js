@@ -15,9 +15,9 @@ const TelaPrincipal = (props) => {
 
       <BotaoCustomizado
         cor="primaria"
-        onPress={() => props.navigation.navigate(TELAS.TELA_ANUNCIO_DETALHADO)}
+        onPress={() => props.navigation.navigate(TELAS.TELA_CADASTRO_PRODUTO)}
       >
-        SOU UM EXEMPLO ANÚNCIO - 2
+        CADASTRAR PRODUTO
       </BotaoCustomizado>
 
       <BotaoCustomizado
