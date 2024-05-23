@@ -1,6 +1,6 @@
 import { View } from "react-native";
 import styles from "./TelaCadastroUsuarioStyles";
-import { ScrollView } from "react-native";
+// import { ScrollView } from "react-native";
 import { CampoTextoCustomizadoPrimario } from "../../comum/componentes/CampoTextoCustomizado/CampoTextoCustomizado";
 import BotaoCustomizado from "../../comum/componentes/BotaoCustomizado/BotaoCustomizado";
 import TELAS from "../../comum/constantes/telas";

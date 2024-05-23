@@ -12,6 +12,17 @@ const styles = StyleSheet.create({
   campoDescricao: {
     height: 40,
   },
+
+  //estilos imagem
+  containerImagem: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  tamanhoImagem: {
+    width: 200,
+    height: 200,
+  },
 });
 
 export default styles;
