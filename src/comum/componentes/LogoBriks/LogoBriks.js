@@ -1,7 +1,7 @@
 import { Image, View } from "react-native";
 import styles from "./LogoBriksStyles";
 
-const LogoBriks = () => {
+export const LogoBriks = () => {
   return (
     <View style={styles.containerLogo}>
       <Image
@@ -12,4 +12,14 @@ const LogoBriks = () => {
   );
 };
 
-export default LogoBriks;
+export const IconBriks = () => {
+  return (
+    <View style={styles.containerLogo}>
+      <Image
+        source={require("../../../../assets/favicon-briks.png")}
+        style={styles.icon}
+      />
+    </View>
+  );
+};
+

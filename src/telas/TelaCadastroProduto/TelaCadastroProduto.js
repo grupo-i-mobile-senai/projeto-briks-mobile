@@ -23,6 +23,7 @@ const TelaCadastroProduto = () => {
     });
 
     // console.log(result);
+    console.log(result.assets[0].uri);
 
     if (!result.canceled) {
       setImagem(result.assets[0].uri);

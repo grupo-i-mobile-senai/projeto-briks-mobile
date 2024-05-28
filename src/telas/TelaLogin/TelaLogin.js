@@ -1,7 +1,8 @@
 import { Text, View } from "react-native";
 import { CampoTextoCustomizadoPrimario } from "../../comum/componentes/CampoTextoCustomizado/CampoTextoCustomizado";
 import styles from "./TelaLoginStyles";
-import LogoBriks from "../../comum/componentes/LogoBriks/LogoBriks";
+// import LogoBriks from "../../comum/componentes/LogoBriks/LogoBriks";
+import { LogoBriks } from "../../comum/componentes/LogoBriks/LogoBriks";
 import BotaoCustomizado from "../../comum/componentes/BotaoCustomizado/BotaoCustomizado";
 import CORES from "../../comum/constantes/cores";
 

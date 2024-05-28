@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import TELAS from "./src/comum/constantes/telas";
-import TelaAbertura from "./src/telas/TelaAbertura/TelaAbertura";
+import TelaBoasVindas from "./src/telas/TelaBoasVindas/TelaBoasVindas.js";
 import TelaLogin from "./src/telas/TelaLogin/TelaLogin";
 import TelaPrincipal from "./src/telas/TelaPrincipal/TelaPrincipal";
 import TelaCadastroUsuario from "./src/telas/TelaCadastroUsuario/TelaCadastroUsuario";
@@ -27,15 +27,15 @@ export default function App() {
     <View style={styles.container}>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName={TELAS.TELA_LOGIN}
+          initialRouteName={TELAS.TELA_BOAS_VINDAS}
           screenOptions={{ cardStyle: { flex: 1 } }}
         >
           <Stack.Group>
-            {/* TELA ABERTURA */}
+            {/* TELA BOAS VINDAS */}
             <Stack.Screen
-              name={TELAS.TELA_ABERTURA}
-              component={TelaAbertura}
-              options={{ title: "TELA ABERTURA", headerShown: false }}
+              name={TELAS.TELA_BOAS_VINDAS}
+              component={TelaBoasVindas}
+              options={{ title: "TELA BOAS VINDAS", headerShown: false }}
             />
 
             {/* TELA LOGIN */}

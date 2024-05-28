@@ -8,6 +8,10 @@ const styles = StyleSheet.create({
     height: 80,
     width: 160,
   },
+  icon: {
+    height: 80,
+    width: 80,
+  },
 });
 
 export default styles;
