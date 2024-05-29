@@ -26,6 +26,10 @@ const CORES = {
   ROXO: "#800080",
 
   PRETO: "#000000",
+
+  SILVER: "#c0c0c0",
+
+  LIGHTGREY: "#d3d3d3",
 };
 
 export default CORES;

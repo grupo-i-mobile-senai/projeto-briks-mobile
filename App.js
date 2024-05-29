@@ -13,6 +13,7 @@ import TelaCadastroProduto from "./src/telas/TelaCadastroProduto/TelaCadastroPro
 import TelaPerfilUsuario from "./src/telas/TelaPerfilUsuario/TelaPerfilUsuario.js";
 import TelaCadastroServico from "./src/telas/TelaCadastroServico/TelaCadastroServico.js";
 import TelaMeusAnuncios from "./src/telas/TelaMeusAnuncios/TelaMeusAnuncios.js";
+import TelaListaAnuncio from "./src/telas/TelaListaAnuncio/TelaListaAnuncio.js";
 
 const Stack = createStackNavigator();
 
@@ -60,6 +61,14 @@ export default function App() {
               component={TelaPrincipal}
               options={{ title: "PRINCIPAL", headerLeft: false }}
             />
+
+            {/* TELA LISTA ANUNCIO */}
+            <Stack.Screen
+              name={TELAS.TELA_LISTA_ANUNCIO}
+              component={TelaListaAnuncio}
+              options={{ title: "LISTA ANUNCIO | PESQUISA" }}
+            />
+            
             {/* TELA ANUNCIO DETALHADO */}
             <Stack.Screen
               name={TELAS.TELA_ANUNCIO_DETALHADO}

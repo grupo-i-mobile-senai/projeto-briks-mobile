@@ -1,6 +1,9 @@
 import React from "react";
 import { Image, ScrollView, View } from "react-native";
-import { CampoTextoCustomizadoSecundario } from "../../comum/componentes/CampoTextoCustomizado/CampoTextoCustomizado";
+import {
+  CampoTextoCustomizadoSecundario,
+  CampoTextoCustomizadoDescricao,
+} from "../../comum/componentes/CampoTextoCustomizado/CampoTextoCustomizado";
 import styles from "./TelaCadastroProdutoStyles";
 import BotaoCustomizado from "../../comum/componentes/BotaoCustomizado/BotaoCustomizado";
 
@@ -33,22 +36,55 @@ const TelaCadastroProduto = () => {
   return (
     <ScrollView>
       <View style={styles.container}>
-
         <View style={styles.containerImagem}>
-          {!imagem && <FontAwesome6 name="image" size={56} onPress={pickImage} />}
-          {imagem && <Image source={{ uri: imagem }} style={styles.tamanhoImagem} />}
+          {!imagem && (
+            <FontAwesome6 name="image" size={56} onPress={pickImage} />
+          )}
+          {imagem && (
+            <Image source={{ uri: imagem }} style={styles.tamanhoImagem} />
+          )}
         </View>
 
         <CampoTextoCustomizadoSecundario label="Título" />
-        <CampoTextoCustomizadoSecundario
+
+        <CampoTextoCustomizadoDescricao
           label="Descrição"
           multiline={true}
-          numberOfLines={4}
+          rows={4}
+          maxLength={100}
         />
-        <CampoTextoCustomizadoSecundario
-          label="Localização"
-          inputMode="numeric"
-        />
+
+        <View>
+          <CampoTextoCustomizadoSecundario
+            label="Localização"
+            placeholder="CEP"
+            inputMode="numeric"
+            maxLength={8}
+          />
+
+          <BotaoCustomizado
+            onPress={() => alert("Botao buscar cep funcionando")}
+            cor="secundaria"
+          >
+            Buscar CEP
+          </BotaoCustomizado>
+        </View>
+
+        <View>
+          <CampoTextoCustomizadoSecundario
+            placeholder="Rua"
+            // inputMode="numeric"
+          />
+          <CampoTextoCustomizadoSecundario
+            placeholder="Bairro"
+            // inputMode="numeric"
+          />
+          <CampoTextoCustomizadoSecundario
+            placeholder="Cidade"
+            // inputMode="numeric"
+          />
+        </View>
+
         <BotaoCustomizado
           cor="primaria"
           onPress={() => alert("Seu anúncio foi cadastrado com sucesso!")}

@@ -10,15 +10,15 @@ const styles = StyleSheet.create({
   },
 
   //estilos imagem
-  containerImagem: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  tamanhoImagem: {
-    width: 200,
-    height: 200,
-  },
+  // containerImagem: {
+  //   flex: 1,
+  //   alignItems: "center",
+  //   justifyContent: "center",
+  // },
+  // tamanhoImagem: {
+  //   width: 200,
+  //   height: 200,
+  // },
 });
 
 export default styles;

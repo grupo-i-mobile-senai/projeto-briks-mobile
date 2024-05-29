@@ -1,10 +1,10 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import CORES from "../../constantes/cores";
 
 const styles = StyleSheet.create({
   botao: {
     height: 48,
-    Width: 40,
+    // width: 40,
     borderWidth: 1,
     borderRadius: 8,
     alignItems: "center",
@@ -17,16 +17,26 @@ const styles = StyleSheet.create({
   },
 
   botaoSecundario: {
-    backgroundColor: CORES.SECUNDARIA,
-  },
-
-  botaoPadrao: {
     backgroundColor: CORES.LARANJA,
     borderColor: CORES.BRANCA,
   },
 
+  botaoPadrao: {
+    flex:1,
+    height: 144,
+    backgroundColor: CORES.LIGHTGREY,
+    color: CORES.TEXTO_PADRAO,
+    justifyContent: "center",
+    alignContent: "center",
+    alignItems:'center',
+    // elevation: Platform.OS === "android" ? 4 : 0,
+    shadowRadius: 8,
+    borderWidth: 0,
+  },
+
   textoBotao: {
-    color: CORES.BRANCA,
+    color: CORES.TEXTO_CLARO,
+    fontWeight: "bold",
   },
 });
 

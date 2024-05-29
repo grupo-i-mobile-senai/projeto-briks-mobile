@@ -9,9 +9,6 @@ const styles = StyleSheet.create({
     gap: 16,
     // backgroundColor: CORES.FUNDO_PADRAO, definir cor fundo
   },
-  campoDescricao: {
-    height: 40,
-  },
 
   //estilos imagem
   containerImagem: {

@@ -6,26 +6,60 @@ import styles from "./TelaPrincipalStyles";
 const TelaPrincipal = (props) => {
   return (
     <View style={styles.container}>
-      <BotaoCustomizado
-        cor="primaria"
-        onPress={() => props.navigation.navigate(TELAS.TELA_ANUNCIO_DETALHADO)}
-      >
-        SOU UM EXEMPLO ANÚNCIO - 1
-      </BotaoCustomizado>
+      <View style={styles.containerBotao}>
+        <BotaoCustomizado
+          // cor="primaria"
+          onPress={() =>
+            props.navigation.navigate(TELAS.TELA_LISTA_ANUNCIO)
+          }
+        >
+          LISTAR ANÚNCIOS
+        </BotaoCustomizado>
 
-      <BotaoCustomizado
-        cor="primaria"
-        onPress={() => props.navigation.navigate(TELAS.TELA_CADASTRO_PRODUTO)}
-      >
-        CADASTRAR PRODUTO
-      </BotaoCustomizado>
+        <BotaoCustomizado
+          // cor="primaria"
+          onPress={() => props.navigation.navigate(TELAS.TELA_MEUS_ANUNCIOS)}
+        >
+          MEUS ANÚNCIOS
+        </BotaoCustomizado>
+      </View>
 
-      <BotaoCustomizado
-        cor="primaria"
-        onPress={() => props.navigation.navigate(TELAS.TELA_ANUNCIO_DETALHADO)}
-      >
-        SOU UM EXEMPLO ANÚNCIO - 3
-      </BotaoCustomizado>
+      <View style={styles.containerBotao}>
+        <BotaoCustomizado
+          // cor="primaria"
+          onPress={() => props.navigation.navigate(TELAS.TELA_CADASTRO_PRODUTO)}
+        >
+          ANUNCIAR PRODUTO
+        </BotaoCustomizado>
+
+        <BotaoCustomizado
+          // cor="primaria"
+          onPress={() =>
+            props.navigation.navigate(TELAS.TELA_CADASTRO_SERVICO)
+          }
+        >
+          ANUNCIAR SERVIÇO
+        </BotaoCustomizado>
+      </View>
+
+      <View style={styles.containerBotao}>
+        <BotaoCustomizado
+          // cor="primaria"
+          onPress={() =>
+            props.navigation.navigate(TELAS.TELA_PERFIL_USUARIO)
+          }
+        >
+          PERFIL
+        </BotaoCustomizado>
+
+        <BotaoCustomizado
+          onPress={() =>
+            props.navigation.navigate(TELAS.TELA_LOGIN)
+          }
+        >
+          SAIR
+        </BotaoCustomizado>
+      </View>
     </View>
   );
 };

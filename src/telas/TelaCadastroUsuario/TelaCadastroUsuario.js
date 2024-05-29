@@ -17,7 +17,7 @@ const TelaCadastroUsuario = (props) => {
         <CampoTextoCustomizadoPrimario label="Senha" secureTextEntry />
         {/* <CampoTextoCustomizadoPrimario label="Confirmar Senha" secureTextEntry /> */}
         <BotaoCustomizado cor="primaria" onPress={() => alert("estou funcionando!")}>CADASTRAR</BotaoCustomizado>
-        <BotaoCustomizado onPress={() => props.navigation.navigate(TELAS.TELA_LOGIN)}>ENTRAR</BotaoCustomizado>
+        <BotaoCustomizado cor="secundaria" onPress={() => props.navigation.navigate(TELAS.TELA_LOGIN)}>ENTRAR</BotaoCustomizado>
       </View>
     // </ScrollView>
     

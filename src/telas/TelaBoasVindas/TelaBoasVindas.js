@@ -25,7 +25,7 @@ const TelaBoasVindas = (props) => {
           ENTRAR
         </BotaoCustomizado>
 
-        <BotaoCustomizado onPress={() => props.navigation.navigate(TELAS.TELA_CADASTRO_USUARIO)}>
+        <BotaoCustomizado cor="secundaria" onPress={() => props.navigation.navigate(TELAS.TELA_CADASTRO_USUARIO)}>
           CRIAR UMA CONTA
         </BotaoCustomizado>
 

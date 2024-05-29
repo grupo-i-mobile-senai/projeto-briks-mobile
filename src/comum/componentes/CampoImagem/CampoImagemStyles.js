@@ -3,13 +3,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    padding: 16,
-    gap: 16,
-    // backgroundColor: CORES.FUNDO_PADRAO, definir cor fundo
   },
-
-  //estilos imagem
   containerImagem: {
     flex: 1,
     alignItems: "center",

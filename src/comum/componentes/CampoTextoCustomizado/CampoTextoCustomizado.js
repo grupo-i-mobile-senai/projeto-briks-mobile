@@ -19,3 +19,11 @@ export const CampoTextoCustomizadoSecundario = (props) => {
   );
 };
 
+export const CampoTextoCustomizadoDescricao = (props) => {
+  return (
+    <View>
+      <Text style={styles.labelTextoSecundario}>{props.label}</Text>
+      <TextInput style={styles.campoTextoDescricao} {...props} />
+    </View>
+  );
+};

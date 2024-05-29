@@ -8,7 +8,6 @@ import CORES from "../../comum/constantes/cores";
 
 import TELAS from "../../comum/constantes/telas";
 
-
 const TelaLogin = (props) => {
   return (
     <View style={styles.container}>
@@ -34,12 +33,18 @@ const TelaLogin = (props) => {
 
       <BotaoCustomizado
         cor="primaria"
-        onPress={() => {alert("estou funcionando!"); props.navigation.navigate(TELAS.TELA_PRINCIPAL)}}
+        onPress={() => {
+          alert("estou funcionando!");
+          props.navigation.navigate(TELAS.TELA_PRINCIPAL);
+        }}
       >
         ENTRAR
       </BotaoCustomizado>
 
-      <BotaoCustomizado onPress={() => props.navigation.navigate(TELAS.TELA_CADASTRO_USUARIO)}>
+      <BotaoCustomizado
+        cor="secundaria"
+        onPress={() => props.navigation.navigate(TELAS.TELA_CADASTRO_USUARIO)}
+      >
         CADASTRAR
       </BotaoCustomizado>
     </View>
