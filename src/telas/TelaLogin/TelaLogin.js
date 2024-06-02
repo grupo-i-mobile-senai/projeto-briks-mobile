@@ -1,3 +1,4 @@
+import React from "react";
 import { Text, View } from "react-native";
 import { CampoTextoCustomizadoPrimario } from "../../comum/componentes/CampoTextoCustomizado/CampoTextoCustomizado";
 import styles from "./TelaLoginStyles";
@@ -7,22 +8,31 @@ import BotaoCustomizado from "../../comum/componentes/BotaoCustomizado/BotaoCust
 //import CORES from "../../comum/constantes/cores";
 
 import TELAS from "../../comum/constantes/telas";
+import { atualizarItemStorage } from "../../comum/servicos/servicoStorage";
+import { CHAVES_STORAGE } from "../../comum/constantes/chaves-storage";
+import api from '../../comum/servicos/api'
 
 const TelaLogin = (props) => {
+  // const [campoEmail, setCampoEmail] = React.useState("");
+  // const [campoCpf, setCampoCpf] = React.useState("");
 
-  const [campoCpf, setCampoCpf] = useState('');
-  const [campoSenha, setCampoSenha] = useState('');
+  const [campoUsuario, setCampoUsuario] = React.useState("");
+  const [campoSenha, setCampoSenha] = React.useState("");
 
   const entrar = async () => {
     try {
-      if (!campoCpf.trim() || !campoSenha.trim()) {
-        alert('Preencha os campos!');
+      if (!campoUsuario.trim() || !campoSenha.trim()) {
+        alert("Preencha os campos!");
         return;
       }
 
-      const response = await api.post('/logar', { cpf: campoUsuario, senha: campoSenha });
+      const response = await api.post("/logar", {
+        email: campoUsuario,
+        cpf: campoUsuario,
+        senha: campoSenha,
+      });
 
-      await atualizarItemStorage(CHAVES_SOTORAGE.USUARIO_LOGADO, response.data);
+      await atualizarItemStorage(CHAVES_STORAGE.USUARIO_LOGADO, response.data);
       props.navigation.navigate(TELAS.TELA_PRINCIPAL);
     } catch (error) {
       alert(error.response.data);
@@ -33,11 +43,7 @@ const TelaLogin = (props) => {
     <View style={styles.container}>
       <View>
         <LogoBriks />
-
-        <Text style={estilos.tituloEntrar}>Entrar</Text>
-    
       </View>
-
 
       <View style={styles.containerTituloEntrar}>
         {/* <Text style={styles.tituloEntrar}>Entrar</Text> */}
@@ -45,14 +51,16 @@ const TelaLogin = (props) => {
 
       <CampoTextoCustomizadoPrimario
         // style={styles.campoTextoLogin}
-        label="CPF"
-        value={campoCpf}
-        inputMode="numeric"
-        maxLength={11}
+        label="CPF ou Email"
+        value={campoUsuario}
+        onChangeText={setCampoUsuario}
+        // inputMode="numeric"
+        // maxLength={11}
       />
       <CampoTextoCustomizadoPrimario
         // style={styles.campoTextoLogin}
         label="Senha"
+        onChangeText={setCampoSenha}
         value={campoSenha}
         secureTextEntry
       />
@@ -66,6 +74,10 @@ const TelaLogin = (props) => {
       >
         ENTRAR
       </BotaoCustomizado>
+
+      {/* <BotaoCustomizado cor="primaria" onPress={entrar}>
+        ENTRAR
+      </BotaoCustomizado> */}
 
       <BotaoCustomizado
         cor="secundaria"

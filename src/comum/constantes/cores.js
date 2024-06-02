@@ -1,5 +1,5 @@
 const CORES = {
-  PRIMARIA: "#3f50b5",
+  PRIMARIA: "#3498db",
 
   SECUNDARIA: "#ff9100",
 
@@ -16,6 +16,8 @@ const CORES = {
   AZUL: "#0000ff",
 
   VERMELHO: "#ff0000",
+
+  VERMELHO_VARIACAO: "#e74c3c",
 
   AMARELO: "#ffff00",
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, ScrollView, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import {
   CampoTextoCustomizadoSecundario,
   CampoTextoCustomizadoDescricao,
@@ -7,29 +7,57 @@ import {
 import styles from "./TelaCadastroProdutoStyles";
 import BotaoCustomizado from "../../comum/componentes/BotaoCustomizado/BotaoCustomizado";
 
-import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
+// import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 
 // https://docs.expo.dev/versions/latest/sdk/imagepicker/
 //https://docs.expo.dev/versions/v50.0.0/sdk/imagepicker/#enums
-import * as ImagePicker from "expo-image-picker";
+// import * as ImagePicker from "expo-image-picker";
+import CampoImagem from "../../comum/componentes/CampoImagem/CampoImagem";
+import apiCep from "../../comum/servicos/apiCep";
+import api from "../../comum/servicos/api";
+import TELAS from "../../comum/constantes/telas";
 
-const TelaCadastroProduto = () => {
-  const [imagem, setImagem] = React.useState();
+const TelaCadastroProduto = (props) => {
+  const [campoTitulo, setCampoTitulo] = React.useState("");
+  const [campoDescricao, setCampoDescricao] = React.useState("");
+  const [campoCep, setCampoCep] = React.useState("");
+  const [campoRua, setCampoRua] = React.useState("");
+  const [campoBairro, setCampoBairro] = React.useState("");
+  const [campoCidade, setCampoCidade] = React.useState("");
 
-  const pickImage = async () => {
-    // No permissions request is necessary for launching the image library
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
+  const localizarCep = async () => {
+    try {
+      const response = await apiCep.get(`/${campoCep}`);
+      setCampoRua(response.data.street);
+      setCampoBairro(response.data.neighborhood);
+      setCampoCidade(response.data.city);
+    } catch (error) {
+      console.log("Erro: " + error);
+    }
+  };
 
-    // console.log(result);
-    console.log(result.assets[0].uri);
+  const salvarProduto = async () => {
+    try {
+      const produto = {
+        titulo: campoTitulo,
+        descricao: campoDescricao,
+        cep: campoCep,
+        rua: campoRua,
+        bairro: campoBairro,
+        cidade: campoCidade,
+      };
 
-    if (!result.canceled) {
-      setImagem(result.assets[0].uri);
+      await api.post("/produtos", produto);
+      alert("Anúncio cadastrado com sucesso!");
+      setCampoTitulo("");
+      setCampoDescricao("");
+      setCampoCep("");
+      setCampoRua("");
+      setCampoBairro("");
+      setCampoCidade("");
+      props.navigation.navigate(TELAS.TELA_MEUS_ANUNCIOS);
+    } catch (error) {
+      alert(error.response.data);
     }
   };
 
@@ -37,21 +65,22 @@ const TelaCadastroProduto = () => {
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.containerImagem}>
-          {!imagem && (
-            <FontAwesome6 name="image" size={56} onPress={pickImage} />
-          )}
-          {imagem && (
-            <Image source={{ uri: imagem }} style={styles.tamanhoImagem} />
-          )}
+          <CampoImagem />
         </View>
 
-        <CampoTextoCustomizadoSecundario label="Título" />
+        <CampoTextoCustomizadoSecundario
+          label="Título"
+          value={campoTitulo}
+          onChangeText={setCampoTitulo}
+        />
 
         <CampoTextoCustomizadoDescricao
           label="Descrição"
           multiline={true}
           rows={4}
           maxLength={100}
+          value={campoDescricao}
+          onChangeText={setCampoDescricao}
         />
 
         <View>
@@ -60,12 +89,11 @@ const TelaCadastroProduto = () => {
             placeholder="CEP"
             inputMode="numeric"
             maxLength={8}
+            value={campoCep}
+            onChangeText={setCampoCep}
           />
 
-          <BotaoCustomizado
-            onPress={() => alert("Botao buscar cep funcionando")}
-            cor="secundaria"
-          >
+          <BotaoCustomizado onPress={localizarCep} cor="secundaria">
             Buscar CEP
           </BotaoCustomizado>
         </View>
@@ -73,21 +101,40 @@ const TelaCadastroProduto = () => {
         <View>
           <CampoTextoCustomizadoSecundario
             placeholder="Rua"
+            value={campoRua}
+            onChangeText={() => setCampoRua()}
             // inputMode="numeric"
           />
           <CampoTextoCustomizadoSecundario
             placeholder="Bairro"
+            value={campoBairro}
+            onChangeText={() => setCampoBairro()}
             // inputMode="numeric"
           />
           <CampoTextoCustomizadoSecundario
             placeholder="Cidade"
+            value={campoCidade}
+            onChangeText={() => setCampoCidade()}
             // inputMode="numeric"
           />
         </View>
 
+        {/* <BotaoCustomizado
+          cor="primaria"
+          onPress={() => {
+            salvarProduto;
+            alert("Seu anúncio foi cadastrado com sucesso!");
+            props.navigation.navigate(TELAS.TELA_MEUS_ANUNCIOS);
+          }}
+        >
+          Anunciar
+        </BotaoCustomizado> */}
+
         <BotaoCustomizado
           cor="primaria"
-          onPress={() => alert("Seu anúncio foi cadastrado com sucesso!")}
+          onPress={salvarProduto}
+            
+          
         >
           Anunciar
         </BotaoCustomizado>

@@ -22,15 +22,16 @@ const styles = StyleSheet.create({
   },
 
   botaoPadrao: {
-    flex:1,
+    flex: 1,
     height: 144,
     backgroundColor: CORES.LIGHTGREY,
     color: CORES.TEXTO_PADRAO,
     justifyContent: "center",
     alignContent: "center",
-    alignItems:'center',
+    alignItems: "center",
     // elevation: Platform.OS === "android" ? 4 : 0,
-    shadowRadius: 8,
+    elevation: 5,
+    shadowRadius: 4,
     borderWidth: 0,
   },
 
