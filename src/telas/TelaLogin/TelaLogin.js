@@ -65,7 +65,7 @@ const TelaLogin = (props) => {
         secureTextEntry
       />
 
-      <BotaoCustomizado
+      {/* <BotaoCustomizado
         cor="primaria"
         onPress={() => {
           alert("estou funcionando!");
@@ -73,11 +73,11 @@ const TelaLogin = (props) => {
         }}
       >
         ENTRAR
-      </BotaoCustomizado>
-
-      {/* <BotaoCustomizado cor="primaria" onPress={entrar}>
-        ENTRAR
       </BotaoCustomizado> */}
+
+      <BotaoCustomizado cor="primaria" onPress={entrar}>
+        ENTRAR
+      </BotaoCustomizado>
 
       <BotaoCustomizado
         cor="secundaria"

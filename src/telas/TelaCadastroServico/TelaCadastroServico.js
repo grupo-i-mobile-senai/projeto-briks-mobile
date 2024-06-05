@@ -12,8 +12,35 @@ import RNPickerSelect from "react-native-picker-select";
 import pickerSelectStyles from "../../comum/constantes/pickerSelectStyles";
 import TELAS from "../../comum/constantes/telas";
 
+import api from '../../comum/servicos/api'
+
 const TelaCadastroServico = (props) => {
+  const [campoTitulo, setCampoTitulo] = React.useState("");
+  const [campoDescricao, setCampoDescricao] = React.useState("");
   const [campoRegiao, setCampoRegiao] = React.useState();
+  const [campoBairro, setCampoBairro] = React.useState("");
+
+  const salvarServico = async () => {
+    try {
+      const servico = {
+        titulo: campoTitulo,
+        descricao: campoDescricao,
+        regiao: campoRegiao,
+        bairro: campoBairro,
+      };
+
+      await api.post("/servicos", servico);
+      alert("Anúncio cadastrado com sucesso!");
+      setCampoTitulo("");
+      setCampoDescricao("");
+      setCampoRegiao("");
+      setCampoBairro("");
+
+      props.navigation.navigate(TELAS.TELA_MEUS_ANUNCIOS);
+    } catch (error) {
+      alert(error.response.data);
+    }
+  };
 
   return (
     <ScrollView>
@@ -22,13 +49,19 @@ const TelaCadastroServico = (props) => {
           <CampoImagem />
         </View>
 
-        <CampoTextoCustomizadoSecundario label="Título" />
+        <CampoTextoCustomizadoSecundario
+          label="Título"
+          value={campoTitulo}
+          onChangeText={setCampoTitulo}
+        />
 
         <CampoTextoCustomizadoDescricao
           label="Descrição"
           multiline={true}
           rows={4}
           maxLength={100}
+          value={campoDescricao}
+          onChangeText={setCampoDescricao}
         />
 
         <View>
@@ -62,10 +95,12 @@ const TelaCadastroServico = (props) => {
             multiline={true}
             rows={4}
             maxLength={100}
+            value={campoBairro}
+            onChangeText={setCampoBairro}
           />
         </View>
 
-        <BotaoCustomizado
+        {/* <BotaoCustomizado
           cor="primaria"
           onPress={() => {
             alert("Seu anúncio foi cadastrado com sucesso!");
@@ -73,7 +108,16 @@ const TelaCadastroServico = (props) => {
           }}
         >
           Anunciar
+        </BotaoCustomizado> */}
+
+        <BotaoCustomizado
+          cor="primaria"
+          onPress={salvarServico}>
+          Anunciar
         </BotaoCustomizado>
+
+
+        
       </View>
     </ScrollView>
   );
