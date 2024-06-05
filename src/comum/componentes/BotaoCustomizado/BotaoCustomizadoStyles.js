@@ -29,10 +29,21 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    // elevation: Platform.OS === "android" ? 4 : 0,
+    elevation: Platform.OS === "android" ? 4 : 0,
     elevation: 5,
     shadowRadius: 4,
     borderWidth: 0,
+
+
+    // borderColor:'none',
+    // shadowColor: "#000",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 2,
+    // },
+    // shadowOpacity: 0.25,
+    // shadowRadius: 4,
+    // elevation: 5,
   },
 
   textoBotao: {
