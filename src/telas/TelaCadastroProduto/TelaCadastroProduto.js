@@ -58,6 +58,7 @@ const TelaCadastroProduto = (props) => {
       props.navigation.navigate(TELAS.TELA_MEUS_ANUNCIOS);
     } catch (error) {
       alert(error.response.data);
+      console.log(error)
     }
   };
 

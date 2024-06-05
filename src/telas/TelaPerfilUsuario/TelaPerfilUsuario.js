@@ -1,11 +1,11 @@
-import { ScrollView, TextInput, View } from "react-native";
+import { ScrollView, Text, TextInput, View } from "react-native";
 import CampoImagem from "../../comum/componentes/CampoImagem/CampoImagem";
 import { CampoTextoCustomizadoSecundario } from "../../comum/componentes/CampoTextoCustomizado/CampoTextoCustomizado";
 import BotaoCustomizado from "../../comum/componentes/BotaoCustomizado/BotaoCustomizado";
 import styles from "./TelaPerfilUsuarioStyles";
-import React from "react";
+import React, { useEffect } from "react";
 
-// import api from "../../comum/servicos/api";
+import api from "../../comum/servicos/api";
 
 const TelaPerfilUsuario = () => {
   const [campoNome, setCampoNome] = React.useState("");
@@ -19,20 +19,72 @@ const TelaPerfilUsuario = () => {
   const [botaoSalvar, setBotaoSalvar] = React.useState(false);
   const [botaoExcluirConta, setBotaoExcluirConta] = React.useState(true);
 
+  //CARREANDO DADOS DO USUARIO NO PERFIL
+  useEffect(() => {
+    const carregarDadosUsuario = async () => {
+      try {
+        const response = await api.get("/perfil");
+        setCampoNome(response.data[0].nome);
+        setCampoCpf(response.data[0].cpf);
+        setCampoEmail(response.data[0].email);
+        setCampoSenha(response.data[0].senha);
+        console.log("O nome é: " + response.data[0].nome);
+      } catch (error) {
+        console.log("Erro: " + error);
+      }
+    };
+
+    carregarDadosUsuario();
+  }, []);
+
+  //ALTERANDO O ESTADO DOS CAMPOS E BOTOES
   const editarCampos = () => {
+    // setCampoNome(campoNome);
     setCampoEditavel(true);
     setBotaoSalvar(true);
     setBotaoEditar(false);
     setBotaoExcluirConta(false);
+
+    console.log("Nome: " + campoNome);
+    console.log("CPF:" + campoCpf);
+    console.log("Email: " + campoEmail);
+    console.log("Senha criptografada: " + campoSenha);
   };
 
-  const salvarDados = () => {
+  const salvarDados = async () => {
+    try {
+      const dadosPerfil = {
+        nome: campoNome,
+        email: campoEmail,
+        
+      };
+
+      await api.put("/perfil", dadosPerfil);
+
+      console.log(dadosPerfil);
+      // alert("Dados salvos com sucesso!");
+      // setCampoNome('');
+      // setCampoCpf("");
+      // setCampoEmail("");
+      // setCampoSenha("");
+      // props.navigation.navigate(TELAS.TELA_LOGIN);
+    } catch (error) {
+      alert(error.response.data);
+    }
+
     setCampoEditavel(false);
     setBotaoSalvar(false);
     setBotaoEditar(true);
     setBotaoExcluirConta(true);
-    alert("Dados salvos com sucesso!");
+    // alert("Dados salvos com sucesso!");
   };
+
+  // Atualizar editable -> readOnly
+  // https://reactnative.dev/docs/textinput#readonly
+
+  // implementar validacao de senha atual para criar nova senha
+
+  // https://reactnative.dev/docs/textinput#onchangetext
 
   return (
     <ScrollView>
@@ -45,7 +97,7 @@ const TelaPerfilUsuario = () => {
           label="Nome"
           value={campoNome}
           editable={campoEditavel}
-          onChangeText={setCampoNome}
+          onChangeText={(textoNome) => setCampoNome(textoNome)}
         />
 
         <CampoTextoCustomizadoSecundario
@@ -54,7 +106,7 @@ const TelaPerfilUsuario = () => {
           value={campoCpf}
           editable={false}
           maxLength={11}
-          onChangeText={setCampoCpf}
+          onChangeText={(textoCpf) => setCampoCpf(textoCpf)}
         />
 
         <CampoTextoCustomizadoSecundario
@@ -62,15 +114,15 @@ const TelaPerfilUsuario = () => {
           inputMode="email"
           value={campoEmail}
           editable={campoEditavel}
-          onChangeText={setCampoEmail}
+          onChangeText={(textoEmail) => setCampoEmail(textoEmail)}
         />
 
         <CampoTextoCustomizadoSecundario
           label="Senha"
           secureTextEntry
           value={campoSenha}
-          editable={false}
-          onChangeText={setCampoSenha}
+          editable={campoEditavel}
+          onChangeText={(textoSenha) => setCampoSenha(textoSenha)}
         />
 
         <View>
