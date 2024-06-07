@@ -15,6 +15,10 @@ import TelaCadastroServico from "./src/telas/TelaCadastroServico/TelaCadastroSer
 import TelaMeusAnuncios from "./src/telas/TelaMeusAnuncios/TelaMeusAnuncios.js";
 import TelaListaAnuncio from "./src/telas/TelaListaAnuncio/TelaListaAnuncio.js";
 
+import { pegarItemStorage } from "./src/comum/servicos/servicoStorage.js";
+import { CHAVES_STORAGE } from "./src/comum/constantes/chaves-storage.js";
+import { useEffect, useState } from "react";
+
 const Stack = createStackNavigator();
 
 const styles = StyleSheet.create({
@@ -24,11 +28,28 @@ const styles = StyleSheet.create({
 });
 
 export default function App() {
+  const [usuarioLogado, setUsuarioLogado] = useState();
+
+  useEffect(() => {
+    const verificarSeUsuarioEstaLogado = async () => {
+      const usuarioQueEstaNoStorage = await pegarItemStorage(
+        CHAVES_STORAGE.USUARIO_LOGADO
+      );
+      setUsuarioLogado(usuarioQueEstaNoStorage);
+    };
+
+    verificarSeUsuarioEstaLogado();
+  }, []);
+
+  if (usuarioLogado === undefined) {
+    return <></>;
+  }
+
   return (
     <View style={styles.container}>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName={TELAS.TELA_BOAS_VINDAS}
+          initialRouteName={usuarioLogado ? TELAS.TELA_PRINCIPAL : TELAS.TELA_BOAS_VINDAS}
           screenOptions={{ cardStyle: { flex: 1 } }}
         >
           <Stack.Group>

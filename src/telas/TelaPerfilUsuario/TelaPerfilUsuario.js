@@ -6,6 +6,8 @@ import styles from "./TelaPerfilUsuarioStyles";
 import React, { useEffect } from "react";
 
 import api from "../../comum/servicos/api";
+import { atualizarItemStorage, pegarItemStorage } from "../../comum/servicos/servicoStorage";
+import { CHAVES_STORAGE } from "../../comum/constantes/chaves-storage";
 
 const TelaPerfilUsuario = () => {
   const [campoNome, setCampoNome] = React.useState("");
@@ -23,12 +25,14 @@ const TelaPerfilUsuario = () => {
   useEffect(() => {
     const carregarDadosUsuario = async () => {
       try {
-        const response = await api.get("/perfil");
-        setCampoNome(response.data[0].nome);
-        setCampoCpf(response.data[0].cpf);
-        setCampoEmail(response.data[0].email);
-        setCampoSenha(response.data[0].senha);
-        console.log("O nome é: " + response.data[0].nome);
+
+        const usuarioLogado = await pegarItemStorage(CHAVES_STORAGE.USUARIO_LOGADO);
+        
+        // const response = await api.get("/perfil");
+        setCampoNome(usuarioLogado.nome);
+        setCampoCpf(usuarioLogado.cpf);
+        setCampoEmail(usuarioLogado.email);
+        // setCampoSenha(response.data[0].senha);
       } catch (error) {
         console.log("Erro: " + error);
       }
@@ -45,22 +49,23 @@ const TelaPerfilUsuario = () => {
     setBotaoEditar(false);
     setBotaoExcluirConta(false);
 
-    console.log("Nome: " + campoNome);
-    console.log("CPF:" + campoCpf);
-    console.log("Email: " + campoEmail);
-    console.log("Senha criptografada: " + campoSenha);
   };
 
   const salvarDados = async () => {
+
     try {
+      const usuarioLogado = await pegarItemStorage(CHAVES_STORAGE.USUARIO_LOGADO);
       const dadosPerfil = {
+        id_usuario: usuarioLogado.id_usuario,
         nome: campoNome,
+        cpf: campoCpf,
         email: campoEmail,
         
       };
 
       await api.put("/perfil", dadosPerfil);
 
+      await atualizarItemStorage(CHAVES_STORAGE.USUARIO_LOGADO, dadosPerfil)
       console.log(dadosPerfil);
       // alert("Dados salvos com sucesso!");
       // setCampoNome('');
@@ -121,7 +126,7 @@ const TelaPerfilUsuario = () => {
           label="Senha"
           secureTextEntry
           value={campoSenha}
-          editable={campoEditavel}
+          editable={false}
           onChangeText={(textoSenha) => setCampoSenha(textoSenha)}
         />
 
