@@ -12,13 +12,14 @@ const BotaoCustomizado = (props) => {
       estilosBotao.push(styles.botaoSecundario);
       break;
     default:
+      case 'padrao':
       estilosBotao.push(styles.botaoPadrao);
       break;
   }
 
   return (
     <Pressable style={estilosBotao} onPress={props.onPress}>
-      <Text style={styles.textoBotao}>{props.children}</Text>
+      <Text style={props.cor !== "padrao"? styles.textoBotao : styles.textoBotaoPadrao}>{props.children}</Text>
     </Pressable>
   );
 };

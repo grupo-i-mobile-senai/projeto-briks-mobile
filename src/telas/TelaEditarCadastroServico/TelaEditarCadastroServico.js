@@ -1,5 +1,5 @@
 import { ScrollView, View, Text, Image } from "react-native";
-// import CampoImagem from "../../comum/componentes/CampoImagem/CampoImagem";
+import CampoImagem from "../../comum/componentes/CampoImagem/CampoImagem";
 import styles from "./TelaEditarCadastroServicoStyles";
 import {
   CampoTextoCustomizadoDescricao,
@@ -98,8 +98,8 @@ const TelaEditarCadastroServico = (props) => {
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.containerImagem}>
-          {/* <CampoImagem value={campoFoto} onChangeText={setCampoFoto}/> */}
-          <Image source={{ uri: campoFoto }} />
+          <CampoImagem value={campoFoto} onChangeText={setCampoFoto}/>
+          {/* <Image source={{ uri: campoFoto }} /> */}
         </View>
 
         <CampoTextoCustomizadoSecundario

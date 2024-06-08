@@ -8,7 +8,7 @@ const TelaPrincipal = (props) => {
     <View style={styles.container}>
       <View style={styles.containerBotao}>
         <BotaoCustomizado
-          // cor="primaria"
+          cor="padrao"
           onPress={() =>
             props.navigation.navigate(TELAS.TELA_LISTA_ANUNCIO)
           }
@@ -17,7 +17,7 @@ const TelaPrincipal = (props) => {
         </BotaoCustomizado>
 
         <BotaoCustomizado
-          // cor="primaria"
+          cor="padrao"
           onPress={() => props.navigation.navigate(TELAS.TELA_MEUS_ANUNCIOS)}
         >
           MEUS ANÚNCIOS
@@ -26,14 +26,14 @@ const TelaPrincipal = (props) => {
 
       <View style={styles.containerBotao}>
         <BotaoCustomizado
-          // cor="primaria"
+          cor="padrao"
           onPress={() => props.navigation.navigate(TELAS.TELA_CADASTRO_PRODUTO)}
         >
           ANUNCIAR PRODUTO
         </BotaoCustomizado>
 
         <BotaoCustomizado
-          // cor="primaria"
+          cor="padrao"
           onPress={() =>
             props.navigation.navigate(TELAS.TELA_CADASTRO_SERVICO)
           }
@@ -44,7 +44,7 @@ const TelaPrincipal = (props) => {
 
       <View style={styles.containerBotao}>
         <BotaoCustomizado
-          // cor="primaria"
+          cor="padrao"
           onPress={() =>
             props.navigation.navigate(TELAS.TELA_PERFIL_USUARIO)
           }
@@ -53,6 +53,7 @@ const TelaPrincipal = (props) => {
         </BotaoCustomizado>
 
         <BotaoCustomizado
+        cor="padrao"
           onPress={() =>
             props.navigation.navigate(TELAS.TELA_LOGIN)
           }

@@ -108,7 +108,7 @@ const TelaPerfilUsuario = () => {
         <CampoTextoCustomizadoSecundario
           label="CPF"
           inputMode="numeric"
-          value={campoCpf}
+          value={campoCpf.toString()}
           editable={false}
           maxLength={11}
           onChangeText={(textoCpf) => setCampoCpf(textoCpf)}
