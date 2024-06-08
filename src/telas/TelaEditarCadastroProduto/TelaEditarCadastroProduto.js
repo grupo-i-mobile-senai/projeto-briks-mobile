@@ -1,10 +1,12 @@
+
 import React from "react";
 import { ScrollView, View } from "react-native";
 import {
   CampoTextoCustomizadoSecundario,
   CampoTextoCustomizadoDescricao,
 } from "../../comum/componentes/CampoTextoCustomizado/CampoTextoCustomizado";
-import styles from "./TelaCadastroProdutoStyles";
+
+import styles from "./TelaEditarCadastroProdutoStyles";
 import BotaoCustomizado from "../../comum/componentes/BotaoCustomizado/BotaoCustomizado";
 
 // import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
@@ -14,16 +16,16 @@ import BotaoCustomizado from "../../comum/componentes/BotaoCustomizado/BotaoCust
 // import * as ImagePicker from "expo-image-picker";
 import CampoImagem from "../../comum/componentes/CampoImagem/CampoImagem";
 import apiCep from "../../comum/servicos/apiCep";
-import api from "../../comum/servicos/api";
+import api from '../../comum/servicos/api'
 import TELAS from "../../comum/constantes/telas";
 
-const TelaCadastroProduto = (props) => {
-  const [campoTitulo, setCampoTitulo] = React.useState("");
-  const [campoDescricao, setCampoDescricao] = React.useState("");
-  const [campoCep, setCampoCep] = React.useState("");
-  const [campoRua, setCampoRua] = React.useState("");
-  const [campoBairro, setCampoBairro] = React.useState("");
-  const [campoCidade, setCampoCidade] = React.useState("");
+const TelaEditarCadastroProduto = (props) => {
+  const [campoTitulo, setCampoTitulo] = React.useState(props.route.params?.produto.titulo || '');
+  const [campoDescricao, setCampoDescricao] = React.useState(props.route.params?.produto.descricao || '');
+  const [campoCep, setCampoCep] = React.useState(props.route.params?.produto.cep || '');
+  const [campoRua, setCampoRua] = React.useState(props.route.params?.produto.rua || '');
+  const [campoBairro, setCampoBairro] = React.useState(props.route.params?.produto.bairro || '');
+  const [campoCidade, setCampoCidade] = React.useState(props.route.params?.produto.cidade || '');
 
   const localizarCep = async () => {
     try {
@@ -36,7 +38,7 @@ const TelaCadastroProduto = (props) => {
     }
   };
 
-  const salvarProduto = async () => {
+  const salvarProdutoEditado = async () => {
     try {
       const produto = {
         id_produto: props.route.params?.produto.id_produto,
@@ -47,22 +49,51 @@ const TelaCadastroProduto = (props) => {
         bairro: campoBairro,
         cidade: campoCidade,
       };
+      
+     
 
-      await api.post("/produtos", produto);
-      alert("Anúncio cadastrado com sucesso!");
-      props.navigation.navigate(TELAS.TELA_MEUS_ANUNCIOS, {refresh: +new Date()});
-      // setCampoTitulo("");
-      // setCampoDescricao("");
-      // setCampoCep("");
-      // setCampoRua("");
-      // setCampoBairro("");
-      // setCampoCidade("");
-      // props.navigation.navigate(TELAS.TELA_MEUS_ANUNCIOS);
+      if (props.route.params?.produto.id_produto) {
+        await api.put('/produtos', produto);
+        
+      } else {
+        await api.post('/produtos', produto);
+      }
+      alert('Dados salvos com sucesso!');
+      props.navigation.navigate(TELAS.TELA_MEUS_ANUNCIOS, { refresh: +new Date() });
     } catch (error) {
       alert(error.response.data);
-      console.log(error)
     }
   };
+
+  const excluirProduto = async () => {
+    try {
+      if (confirm(`Deseja excluir o anúncio?`)) {
+        await api.delete(`/produtos/${props.route.params.produto.id_produto}`);
+        alert('Anúncio excluido com sucesso!');
+        props.navigation.navigate(TELAS.TELA_MEUS_ANUNCIOS, { refresh: +new Date() });
+      }
+    } catch (error) {
+      alert(error.response.data);
+    }
+  };
+
+
+
+  //     await api.post("/produtos", produto);
+  //     alert("Anúncio cadastrado com sucesso!");
+  //     props.navigation.navigate(TELAS.TELA_MEUS_ANUNCIOS, {refresh: +new Date()});
+  //     // setCampoTitulo("");
+  //     // setCampoDescricao("");
+  //     // setCampoCep("");
+  //     // setCampoRua("");
+  //     // setCampoBairro("");
+  //     // setCampoCidade("");
+  //     // props.navigation.navigate(TELAS.TELA_MEUS_ANUNCIOS);
+  //   } catch (error) {
+  //     alert(error.response.data);
+  //     console.log(error)
+  //   }
+  // };
 
   return (
     <ScrollView>
@@ -134,16 +165,17 @@ const TelaCadastroProduto = (props) => {
         </BotaoCustomizado> */}
 
         <BotaoCustomizado
-          cor="primaria"
-          onPress={salvarProduto}
-            
-          
-        >
-          Anunciar
+          cor="primaria" onPress={salvarProdutoEditado}>
+          Salvar
+        </BotaoCustomizado>
+
+        <BotaoCustomizado
+          cor="secundaria" onPress={excluirProduto}>
+          Excluir
         </BotaoCustomizado>
       </View>
     </ScrollView>
   );
 };
 
-export default TelaCadastroProduto;
+export default TelaEditarCadastroProduto;

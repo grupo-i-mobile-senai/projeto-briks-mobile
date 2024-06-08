@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
   botao: {
     height: 48,
     // width: 40,
-    borderWidth: 1,
+    // borderWidth: 1,
     borderRadius: 8,
     alignItems: "center",
     justifyContent: "center",
@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     elevation: Platform.OS === "android" ? 4 : 0,
     elevation: 5,
-    shadowRadius: 4,
-    borderWidth: 0,
+    // shadowRadius: 4,
+    // borderWidth: 0,
 
 
     // borderColor:'none',
