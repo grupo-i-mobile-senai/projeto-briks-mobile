@@ -36,43 +36,43 @@ const TelaCadastroUsuario = (props) => {
 
   return (
     // <ScrollView>
-    <View style={styles.container}>
-      <CampoTextoCustomizadoPrimario
-        value={campoNome}
-        label="Nome"
-        onChangeText={setCampoNome}
-      />
-      <CampoTextoCustomizadoPrimario
-        value={campoCpf}
-        label="CPF"
-        onChangeText={setCampoCpf}
-        inputMode="numeric"
-        maxLength={11}
-      />
-      <CampoTextoCustomizadoPrimario
-        value={campoEmail}
-        label="Email"
-        onChangeText={setCampoEmail}
-        inputMode="email"
-      />
+      <View style={styles.container}>
+        <CampoTextoCustomizadoPrimario
+          value={campoNome}
+          label="Nome"
+          onChangeText={setCampoNome}
+        />
+        <CampoTextoCustomizadoPrimario
+          value={campoCpf}
+          label="CPF"
+          onChangeText={setCampoCpf}
+          inputMode="numeric"
+          maxLength={11}
+        />
+        <CampoTextoCustomizadoPrimario
+          value={campoEmail}
+          label="Email"
+          onChangeText={setCampoEmail}
+          inputMode="email"
+        />
 
-      <CampoTextoCustomizadoPrimario
-        value={campoSenha}
-        label="Senha"
-        onChangeText={setCampoSenha}
-        secureTextEntry
-      />
-      {/* <CampoTextoCustomizadoPrimario label="Confirmar Senha" secureTextEntry /> */}
-      <BotaoCustomizado cor="primaria" onPress={salvar}>
-        CADASTRAR
-      </BotaoCustomizado>
-      <BotaoCustomizado
-        cor="secundaria"
-        onPress={() => props.navigation.navigate(TELAS.TELA_LOGIN)}
-      >
-        ENTRAR
-      </BotaoCustomizado>
-    </View>
+        <CampoTextoCustomizadoPrimario
+          value={campoSenha}
+          label="Senha"
+          onChangeText={setCampoSenha}
+          secureTextEntry
+        />
+        {/* <CampoTextoCustomizadoPrimario label="Confirmar Senha" secureTextEntry /> */}
+        <BotaoCustomizado cor="primaria" onPress={salvar}>
+          CADASTRAR
+        </BotaoCustomizado>
+        <BotaoCustomizado
+          cor="secundaria"
+          onPress={() => props.navigation.navigate(TELAS.TELA_LOGIN)}
+        >
+          ENTRAR
+        </BotaoCustomizado>
+      </View>
     // </ScrollView>
   );
 };
