@@ -11,12 +11,14 @@ import api from "../../comum/servicos/api";
 import { CampoTextoCustomizadoSecundario } from "../../comum/componentes/CampoTextoCustomizado/CampoTextoCustomizado";
 import ItemAnuncio from "./ItemAnuncio";
 
+import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import CORES from "../../comum/constantes/cores";
 
 const TelaListaAnuncio = (props) => {
   const [anuncios, setAnuncios] = useState([]);
   const [campoPesquisa, setCampoPesquisa] = useState("");
+  const [resultadoPesquisa, setResultadoPesquisa] = useState("");
   console.log(campoPesquisa);
 
   //   useEffect(() => {
@@ -39,6 +41,13 @@ const TelaListaAnuncio = (props) => {
     pegarServicosViaApi();
   }, [props.route.params?.refresh]);
 
+  //PESQUISAR ANUNCIO
+  const pesquisarAnuncio = async () => {
+    const response = await api.get(`/servicos/?filtro=${campoPesquisa}`);
+    console.log(response.data);
+    setResultadoPesquisa(response.data);
+  };
+
   return (
     <View style={styles.container}>
       {/* https://reactnative.dev/docs/textinput   propriedades enterKeyHint */}
@@ -54,20 +63,22 @@ const TelaListaAnuncio = (props) => {
         {/* </View> */}
 
         <View style={styles.iconLimparCampo}>
-          {campoPesquisa && <FontAwesome6
-            name="x"
-            size={16}
-            color={CORES.SILVER}
-            onPress={() => setCampoPesquisa('')}
-          />}
+          {campoPesquisa && (
+            <FontAwesome6
+              name="x"
+              size={16}
+              color={CORES.SILVER}
+              onPress={() => setCampoPesquisa("")}
+            />
+          )}
         </View>
 
         <View style={styles.iconPesquisar}>
-          <FontAwesome6
-            name="magnifying-glass"
+          <FontAwesome5
+            name="search"
             size={24}
             color={CORES.SILVER}
-            onPress={() => alert("Estou funcionando!")}
+            onPress={pesquisarAnuncio}
           />
         </View>
       </View>
@@ -89,8 +100,17 @@ const TelaListaAnuncio = (props) => {
           <Text>Novo</Text>
         </Pressable> */}
 
-      <FlatList
+      {/* <FlatList
         data={anuncios}
+        // renderItem={ItemListagemUsuarios}
+        renderItem={(props) => <ItemAnuncio {...props} />}
+        ListEmptyComponent={ListaVazia}
+        ItemSeparatorComponent={SeparadorLista}
+        keyExtractor={(item) => item.id_servico}
+        // inverted={-1}
+      /> */}
+      <FlatList
+        data={resultadoPesquisa ? resultadoPesquisa : anuncios}
         // renderItem={ItemListagemUsuarios}
         renderItem={(props) => <ItemAnuncio {...props} />}
         ListEmptyComponent={ListaVazia}

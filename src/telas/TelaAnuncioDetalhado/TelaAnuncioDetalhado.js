@@ -5,7 +5,7 @@ import {
   Text,
   TextInput,
   View,
-  Image
+  Image,
 } from "react-native";
 import styles from "./TelaAnuncioDetalhadoStyles";
 import BotaoCustomizado from "../../comum/componentes/BotaoCustomizado/BotaoCustomizado";
@@ -18,14 +18,15 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import TelaEditarCadastroServico from "../TelaEditarCadastroServico/TelaEditarCadastroServico";
 // import ItemAnuncio from "../TelaListaAnuncio/ItemAnuncio";
 
-import { CampoTextoCustomizadoDescricao, CampoTextoCustomizadoSecundario } from "../../comum/componentes/CampoTextoCustomizado/CampoTextoCustomizado";
+import {
+  CampoTextoCustomizadoDescricao,
+  CampoTextoCustomizadoSecundario,
+} from "../../comum/componentes/CampoTextoCustomizado/CampoTextoCustomizado";
 
 import RNPickerSelect from "react-native-picker-select";
 import pickerSelectStyles from "../../comum/constantes/pickerSelectStyles";
 
 import CampoImagem from "../../comum/componentes/CampoImagem/CampoImagem";
-
-
 
 const TelaAnuncioDetalhado = (props) => {
   const [modalVisivel, setModalVisivel] = React.useState(false);
@@ -45,7 +46,6 @@ const TelaAnuncioDetalhado = (props) => {
   const [campoBairro, setCampoBairro] = React.useState(
     props.route.params?.servico.bairro || ""
   );
-
 
   return (
     <View style={styles.container}>
@@ -94,12 +94,24 @@ const TelaAnuncioDetalhado = (props) => {
       </Modal>
       {/* FIM MODAL PROPOSTA */}
 
-<View style={styles.containerImagem}>
-          <CampoImagem />
+      <ScrollView>
+        <View style={styles.containerImagem}>
+          <CampoImagem imagem={campoFoto} setImagem={setCampoFoto} readyOnly/>
           {/* <Image source={{ uri: campoFoto }} /> */}
         </View>
+        <Text style={styles.titulo}>{campoTitulo}</Text>
+        <Text style={styles.subTitulo}>Descrição</Text>
+        <Text style={styles.texto}>{campoDescricao}</Text>
+        <Text style={styles.subTitulo}>Região atendida</Text>
+        <Text style={styles.texto}>{campoRegiao}</Text>
+        {campoBairro && (
+          <View>
+            <Text style={styles.subTitulo}>Bairros</Text>
+            <Text style={styles.texto}>{campoBairro}</Text>
+          </View>
+        )}
 
-        <CampoTextoCustomizadoSecundario
+        {/* <CampoTextoCustomizadoSecundario
           label="Título"
           value={campoTitulo}
           onChangeText={setCampoTitulo}
@@ -112,19 +124,19 @@ const TelaAnuncioDetalhado = (props) => {
           maxLength={100}
           value={campoDescricao}
           onChangeText={setCampoDescricao}
-        />
+        /> */}
 
-        <View>
-          <Text>Região atendida</Text>
-          {/* <CampoTextoCustomizadoSecundario
+        {/* <View> */}
+        {/* <Text>Região atendida</Text> */}
+        {/* <CampoTextoCustomizadoSecundario
             label="Região atendida"
             placeholder="CEP"
             inputMode="numeric"
             maxLength={8}
           /> */}
-        </View>
+        {/* </View> */}
 
-        <RNPickerSelect
+        {/* <RNPickerSelect
           placeholder={{ label: "Selecione uma região", value: "" }}
           style={pickerSelectStyles}
           onValueChange={setCampoRegiao}
@@ -136,9 +148,9 @@ const TelaAnuncioDetalhado = (props) => {
             { label: "Leste da Ilha", value: "Leste da Ilha" },
             { label: "Oeste da Ilha", value: "Oeste da Ilha" },
           ]}
-        />
+        /> */}
 
-        <View>
+        {/* <View>
           <CampoTextoCustomizadoDescricao
             //   label="Bairros (Opcional)"
             placeholder="Informe os Bairros (Opcional)"
@@ -148,11 +160,8 @@ const TelaAnuncioDetalhado = (props) => {
             value={campoBairro}
             onChangeText={setCampoBairro}
           />
-        </View>
-   
-
-
-
+        </View> */}
+      </ScrollView>
 
       {/* BOTÃO PARA ABRIR O MODAL */}
       <BotaoCustomizado cor="secundaria" onPress={() => setModalVisivel(true)}>

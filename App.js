@@ -2,6 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { NativeBaseProvider } from "native-base";
 
 import TELAS from "./src/comum/constantes/telas";
 import TelaBoasVindas from "./src/telas/TelaBoasVindas/TelaBoasVindas.js";
@@ -48,6 +49,9 @@ export default function App() {
   }
 
   return (
+    <NativeBaseProvider>
+
+    
     <View style={styles.container}>
       <NavigationContainer>
         <Stack.Navigator
@@ -140,5 +144,6 @@ export default function App() {
 
       <StatusBar style="auto" />
     </View>
+    </NativeBaseProvider>
   );
 }

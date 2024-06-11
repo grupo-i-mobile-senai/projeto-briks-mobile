@@ -7,7 +7,18 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     padding: 16,
     gap: 16,
-    // backgroundColor: CORES.FUNDO_PADRAO, definir cor fundo
+    backgroundColor: CORES.BRANCA,
+  },
+  titulo: {
+    fontSize: 36,
+    fontWeight: "bold",
+  },
+  subTitulo: {
+    fontSize: 24,
+    fontWeight: "bold",
+  },
+  texto: {
+    fontSize: 18,
   },
 });
 

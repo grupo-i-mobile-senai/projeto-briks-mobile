@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {FlatList, Pressable, Text, View } from "react-native";
+import { FlatList, Pressable, Text, View } from "react-native";
 import ListaVazia from "../../comum/componentes/ListaVazia/ListaVazia";
 import SeparadorLista from "../../comum/componentes/SeparadorLista/SeparadorLista";
 import ItemMeusAnuncios from "./ItemMeusAnuncios";
@@ -8,33 +8,29 @@ import TELAS from "../../comum/constantes/telas";
 import styles from "./TelaMeusAnunciosStyles";
 import { CampoTextoCustomizadoPrimario } from "../../comum/componentes/CampoTextoCustomizado/CampoTextoCustomizado";
 
-import api from '../../comum/servicos/api'
-
+import api from "../../comum/servicos/api";
 
 const TelaMeusAnuncios = (props) => {
+  const [meusAnuncios, setMeusAnuncios] = useState([]);
 
-  const [meusAnuncios, setMeusAnuncios]= useState([]);
+  //   useEffect(() => {
 
-//   useEffect(() => {
+  //    const pegarProdutosViaApi = async () => {
+  //       const response = await api.get('/produtos');
+  //       setMeusAnuncios(response.data);
+  //     };
 
-//    const pegarProdutosViaApi = async () => {
-//       const response = await api.get('/produtos');
-//       setMeusAnuncios(response.data);
-//     };
+  // pegarProdutosViaApi()
 
-// pegarProdutosViaApi()
-
-//   }, [props.route.params?.refresh]);
+  //   }, [props.route.params?.refresh]);
 
   useEffect(() => {
-
-   const pegarServicosViaApi = async () => {
-      const response = await api.get('/servicos');
+    const pegarServicosViaApi = async () => {
+      const response = await api.get("/servicos");
       setMeusAnuncios(response.data);
     };
 
-pegarServicosViaApi()
-
+    pegarServicosViaApi();
   }, [props.route.params?.refresh]);
 
   return (
@@ -51,8 +47,10 @@ pegarServicosViaApi()
         ItemSeparatorComponent={SeparadorLista}
         keyExtractor={(item) => item.id_produto}
       /> */}
-      
-      <Pressable onPress={() => props.navigation.navigate(TELAS.TELA_CADASTRO_SERVICO)}>
+
+      <Pressable
+        onPress={() => props.navigation.navigate(TELAS.TELA_CADASTRO_SERVICO)}
+      >
         <Text>Novo</Text>
       </Pressable>
       <FlatList
@@ -63,11 +61,6 @@ pegarServicosViaApi()
         ItemSeparatorComponent={SeparadorLista}
         keyExtractor={(item) => item.id_servico}
       />
-
-
-
-
-
 
       <BotaoCustomizado
         cor="secundaria"

@@ -31,7 +31,7 @@ const CampoImagem = ({imagem, setImagem}) => {
 
       {!imagem && <FontAwesome6 name="image" size={56}  />}
       {imagem && (
-        <Image source={{ uri: imagem }} style={styles.tamanhoImagem} />
+        <Image source={{ uri: imagem }} style={styles.tamanhoImagem}/>
         )}
         </Pressable>
     </View>

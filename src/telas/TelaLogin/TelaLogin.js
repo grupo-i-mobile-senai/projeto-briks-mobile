@@ -10,9 +10,13 @@ import BotaoCustomizado from "../../comum/componentes/BotaoCustomizado/BotaoCust
 import TELAS from "../../comum/constantes/telas";
 import { atualizarItemStorage } from "../../comum/servicos/servicoStorage";
 import { CHAVES_STORAGE } from "../../comum/constantes/chaves-storage";
-import api from '../../comum/servicos/api'
+import api from "../../comum/servicos/api";
+
+import { useToast } from "native-base";
+
 
 const TelaLogin = (props) => {
+  const toast = useToast();
   // const [campoEmail, setCampoEmail] = React.useState("");
   // const [campoCpf, setCampoCpf] = React.useState("");
 
@@ -22,7 +26,11 @@ const TelaLogin = (props) => {
   const entrar = async () => {
     try {
       if (!campoUsuario.trim() || !campoSenha.trim()) {
-        alert("Preencha os campos!");
+        toast.show({
+          description: "Preencha os campos!",
+          placement: "top",
+        });
+
         return;
       }
 
@@ -35,7 +43,11 @@ const TelaLogin = (props) => {
       await atualizarItemStorage(CHAVES_STORAGE.USUARIO_LOGADO, response.data);
       props.navigation.navigate(TELAS.TELA_PRINCIPAL);
     } catch (error) {
-      alert(error.response.data);
+      toast.show({
+        description: error.response.data,
+        placement: "top",
+      });
+      // alert(error.response.data);
     }
   };
 
