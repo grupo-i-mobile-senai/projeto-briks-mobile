@@ -98,7 +98,7 @@ const TelaEditarCadastroServico = (props) => {
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.containerImagem}>
-          <CampoImagem value={campoFoto} onChangeText={setCampoFoto}/>
+          <CampoImagem imagem={campoFoto} setImagem={setCampoFoto}/>
           {/* <Image source={{ uri: campoFoto }} /> */}
         </View>
 

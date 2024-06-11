@@ -1,12 +1,12 @@
 import React from "react";
 import * as ImagePicker from "expo-image-picker";
-import { Image, View } from "react-native";
+import { Image, Pressable, View } from "react-native";
 
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import styles from "./CampoImagemStyles";
 
-const CampoImagem = () => {
-  const [imagem, setImagem] = React.useState();
+const CampoImagem = ({imagem, setImagem}) => {
+  // const [imagem, setImagem] = React.useState();
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -27,10 +27,13 @@ const CampoImagem = () => {
   return (
     
     <View style={styles.containerImagem}>
-      {!imagem && <FontAwesome6 name="image" size={56} onPress={pickImage} />}
+      <Pressable onPress={pickImage}>
+
+      {!imagem && <FontAwesome6 name="image" size={56}  />}
       {imagem && (
         <Image source={{ uri: imagem }} style={styles.tamanhoImagem} />
-      )}
+        )}
+        </Pressable>
     </View>
   );
 };

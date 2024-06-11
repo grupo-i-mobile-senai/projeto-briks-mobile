@@ -15,7 +15,7 @@ import TELAS from "../../comum/constantes/telas";
 import api from '../../comum/servicos/api'
 
 const TelaCadastroServico = (props) => {
-  const [campoImagem, setCampoImagem] = React.useState('')
+  const [campoImagem, setCampoImagem] = React.useState(undefined)
   const [campoTitulo, setCampoTitulo] = React.useState("");
   const [campoDescricao, setCampoDescricao] = React.useState("");
   const [campoRegiao, setCampoRegiao] = React.useState();
@@ -48,7 +48,7 @@ const TelaCadastroServico = (props) => {
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.containerImagem}>
-          <CampoImagem value={campoImagem} onChangeText={setCampoImagem}/>
+          <CampoImagem imagem={campoImagem} setImagem={setCampoImagem}/>
         </View>
 
         <CampoTextoCustomizadoSecundario
