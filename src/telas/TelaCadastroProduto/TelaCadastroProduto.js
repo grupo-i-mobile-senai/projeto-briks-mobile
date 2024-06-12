@@ -18,6 +18,7 @@ import api from "../../comum/servicos/api";
 import TELAS from "../../comum/constantes/telas";
 
 const TelaCadastroProduto = (props) => {
+  const [campoImagem, setCampoImagem] = React.useState(undefined)
   const [campoTitulo, setCampoTitulo] = React.useState("");
   const [campoDescricao, setCampoDescricao] = React.useState("");
   const [campoCep, setCampoCep] = React.useState("");
@@ -40,6 +41,7 @@ const TelaCadastroProduto = (props) => {
     try {
       const produto = {
         id_produto: props.route.params?.produto.id_produto,
+        foto_produto: campoImagem,
         titulo: campoTitulo,
         descricao: campoDescricao,
         cep: campoCep,
@@ -67,8 +69,8 @@ const TelaCadastroProduto = (props) => {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <View style={styles.containerImagem}>
-          <CampoImagem />
+      <View style={styles.containerImagem}>
+          <CampoImagem imagem={campoImagem} setImagem={setCampoImagem}/>
         </View>
 
         <CampoTextoCustomizadoSecundario
