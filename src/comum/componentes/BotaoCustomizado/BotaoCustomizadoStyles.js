@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
 
   textoBotaoPadrao: {
-    color: CORES.SECUNDARIA,
+    color: CORES.PRIMARIA,
     fontWeight: "bold",
   },
 });

@@ -9,10 +9,10 @@ const styles = StyleSheet.create({
     // flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    borderWidth:1,
+    borderWidth: 1,
     width: 200,
     height: 200,
-    borderColor: CORES.LARANJA
+    borderColor: CORES.LARANJA,
   },
   tamanhoImagem: {
     width: 200,

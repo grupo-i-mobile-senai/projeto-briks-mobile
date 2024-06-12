@@ -15,6 +15,12 @@ import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import CORES from "../../comum/constantes/cores";
 
+const ordenarListagem = (lista) => {
+  return lista.sort((a, b) => {
+    return +new Date(a.dt_alteracao) - +new Date(b.dt_alteracao);
+  });
+};
+
 const TelaListaAnuncio = (props) => {
   const [anuncios, setAnuncios] = useState([]);
   const [campoPesquisa, setCampoPesquisa] = useState("");
@@ -32,20 +38,42 @@ const TelaListaAnuncio = (props) => {
 
   //   }, [props.route.params?.refresh]);
 
+  // useEffect(() => {
+  //   const pegarServicosViaApi = async () => {
+  //     const response = await api.get("/servicos");
+  //     setAnuncios(response.data);
+  //   };
+
+  //   pegarServicosViaApi();
+  // }, [props.route.params?.refresh]);
+
   useEffect(() => {
-    const pegarServicosViaApi = async () => {
-      const response = await api.get("/servicos");
-      setAnuncios(response.data);
+    const pegarProdutosEServicosViaApi = async () => {
+      const responseProdutos = await api.get("/produtos");
+      const responseServicos = await api.get("/servicos");
+
+      setAnuncios(
+        ordenarListagem([...responseProdutos.data, ...responseServicos.data])
+      );
     };
 
-    pegarServicosViaApi();
+    pegarProdutosEServicosViaApi();
   }, [props.route.params?.refresh]);
 
   //PESQUISAR ANUNCIO
   const pesquisarAnuncio = async () => {
-    const response = await api.get(`/servicos/?filtro=${campoPesquisa}`);
-    console.log(response.data);
-    setResultadoPesquisa(response.data);
+    const responseBuscaServico = await api.get(`/servicos/?filtro=${campoPesquisa}`);
+    // console.log(responseBuscaServico.data);
+    // setResultadoPesquisa(responseBuscaServico.data);
+
+    const responseBuscaProduto = await api.get(`/produtos/?filtro=${campoPesquisa}`);
+    // console.log(responseBuscaProduto.data);
+    // setResultadoPesquisa(responseBuscaProduto.data);
+
+    setResultadoPesquisa([...responseBuscaProduto.data, ...responseBuscaServico.data])
+
+    // const responseBuscaAnuncio = await api.get(`/?filtro=${campoPesquisa}`);
+    // setResultadoPesquisa(responseBuscaAnuncio.data);
   };
 
   return (
@@ -83,48 +111,14 @@ const TelaListaAnuncio = (props) => {
         </View>
       </View>
 
-      {/* COLOCAR CARD COM MEUS ANUNCIOS PUBLICADOS */}
-      {/* <Pressable onPress={() => props.navigation.navigate(TELAS.TELA_CADASTRO_PRODUTO)}>
-          <Text>Novo</Text>
-        </Pressable>
-        <FlatList
-          data={meusAnuncios}
-          // renderItem={ItemListagemUsuarios}
-          renderItem={(props) => <ItemMeusAnuncios {...props} />}
-          ListEmptyComponent={ListaVazia}
-          ItemSeparatorComponent={SeparadorLista}
-          keyExtractor={(item) => item.id_produto}
-        /> */}
-
-      {/* <Pressable onPress={() => props.navigation.navigate(TELAS.TELA_CADASTRO_SERVICO)}>
-          <Text>Novo</Text>
-        </Pressable> */}
-
-      {/* <FlatList
-        data={anuncios}
-        // renderItem={ItemListagemUsuarios}
-        renderItem={(props) => <ItemAnuncio {...props} />}
-        ListEmptyComponent={ListaVazia}
-        ItemSeparatorComponent={SeparadorLista}
-        keyExtractor={(item) => item.id_servico}
-        // inverted={-1}
-      /> */}
       <FlatList
         data={resultadoPesquisa ? resultadoPesquisa : anuncios}
         // renderItem={ItemListagemUsuarios}
         renderItem={(props) => <ItemAnuncio {...props} />}
         ListEmptyComponent={ListaVazia}
         ItemSeparatorComponent={SeparadorLista}
-        keyExtractor={(item) => item.id_servico}
-        // inverted={-1}
+        keyExtractor={(item) => item.dt_alteracao}
       />
-
-      {/* <BotaoCustomizado
-        cor="secundaria"
-        onPress={() => props.navigation.navigate(TELAS.TELA_ANUNCIO_DETALHADO)}
-      >
-        Simulando anúncio
-      </BotaoCustomizado> */}
     </View>
   );
 };

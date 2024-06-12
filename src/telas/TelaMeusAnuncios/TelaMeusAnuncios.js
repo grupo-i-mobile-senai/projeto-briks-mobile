@@ -6,7 +6,7 @@ import ItemMeusAnuncios from "./ItemMeusAnuncios";
 import BotaoCustomizado from "../../comum/componentes/BotaoCustomizado/BotaoCustomizado";
 import TELAS from "../../comum/constantes/telas";
 import styles from "./TelaMeusAnunciosStyles";
-import { CampoTextoCustomizadoPrimario } from "../../comum/componentes/CampoTextoCustomizado/CampoTextoCustomizado";
+// import { CampoTextoCustomizadoPrimario } from "../../comum/componentes/CampoTextoCustomizado/CampoTextoCustomizado";
 
 import api from "../../comum/servicos/api";
 

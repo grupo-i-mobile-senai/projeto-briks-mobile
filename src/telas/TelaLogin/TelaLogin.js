@@ -41,7 +41,9 @@ const TelaLogin = (props) => {
       });
 
       await atualizarItemStorage(CHAVES_STORAGE.USUARIO_LOGADO, response.data);
-      props.navigation.navigate(TELAS.TELA_PRINCIPAL);
+      props.navigation.reset({
+        index: 0,
+        routes: [{name: TELAS.TELA_PRINCIPAL}]});
     } catch (error) {
       toast.show({
         description: error.response.data,

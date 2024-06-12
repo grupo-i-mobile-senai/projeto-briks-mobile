@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     // flexWrap: "wrap",
     padding: 16,
     gap: 16,
-    backgroundColor: CORES.LARANJA,
+    backgroundColor: CORES.FUNDO_PADRAO,
   },
   containerBotao: {
     //  flex:1,
