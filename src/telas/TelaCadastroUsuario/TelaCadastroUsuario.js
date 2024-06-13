@@ -7,7 +7,11 @@ import TELAS from "../../comum/constantes/telas";
 
 import api from "../../comum/servicos/api";
 
+import { useToast } from "native-base";
+
 const TelaCadastroUsuario = (props) => {
+  const toast = useToast();
+
   const [campoNome, setCampoNome] = React.useState("");
   const [campoCpf, setCampoCpf] = React.useState("");
   const [campoEmail, setCampoEmail] = React.useState("");
@@ -23,14 +27,27 @@ const TelaCadastroUsuario = (props) => {
       };
 
       await api.post("/usuarios", usuario);
-      alert("Dados salvos com sucesso!");
+
+      // alert("Dados salvos com sucesso!");
+
+      toast.show({
+        description:'Conta criada com sucesso!',
+        placement:'top'
+
+      })
+
       setCampoNome("");
       setCampoCpf("");
       setCampoEmail("");
       setCampoSenha("");
       props.navigation.navigate(TELAS.TELA_LOGIN);
     } catch (error) {
-      alert(error.response.data);
+      // alert(error.response.data);
+      toast.show({
+        description:error.response.data,
+        placement:'top'
+
+      })
     }
   };
 

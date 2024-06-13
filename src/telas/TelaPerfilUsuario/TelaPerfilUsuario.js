@@ -11,6 +11,7 @@ import { CHAVES_STORAGE } from "../../comum/constantes/chaves-storage";
 import TELAS from "../../comum/constantes/telas";
 
 const TelaPerfilUsuario = () => {
+  // const [campoFotoPerfil, setCampoFotoPerfil] = React.useState()
   const [campoNome, setCampoNome] = React.useState("");
   const [campoCpf, setCampoCpf] = React.useState("");
   const [campoEmail, setCampoEmail] = React.useState("");
@@ -58,6 +59,7 @@ const TelaPerfilUsuario = () => {
       const usuarioLogado = await pegarItemStorage(CHAVES_STORAGE.USUARIO_LOGADO);
       const dadosPerfil = {
         id_usuario: usuarioLogado.id_usuario,
+        // foto_perfil: campoFotoPerfil,
         nome: campoNome,
         cpf: campoCpf,
         email: campoEmail,

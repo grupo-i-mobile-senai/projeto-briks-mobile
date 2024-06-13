@@ -46,11 +46,7 @@ const TelaMeusAnuncios = (props) => {
   return (
     <View style={styles.container}>
       {/* COLOCAR CARD COM MEUS ANUNCIOS PUBLICADOS */}
-      <Pressable
-        onPress={() => props.navigation.navigate(TELAS.TELA_CADASTRO_PRODUTO)}
-      >
-        <Text>Novo</Text>
-      </Pressable>
+     
       <FlatList
         data={meusAnuncios}
         // renderItem={ItemListagemUsuarios}

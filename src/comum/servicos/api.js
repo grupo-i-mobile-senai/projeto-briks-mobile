@@ -3,7 +3,7 @@ import { pegarItemStorage } from "./servicoStorage";
 import { CHAVES_STORAGE } from "../constantes/chaves-storage";
 
 let instancia = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "http://192.168.0.105:3000",
 });
 
 instancia.interceptors.request.use(async (config) => {

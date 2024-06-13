@@ -12,10 +12,13 @@ import RNPickerSelect from "react-native-picker-select";
 import pickerSelectStyles from "../../comum/constantes/pickerSelectStyles";
 import TELAS from "../../comum/constantes/telas";
 
-import api from '../../comum/servicos/api'
+import api from "../../comum/servicos/api";
+
+import { useToast } from "native-base";
 
 const TelaCadastroServico = (props) => {
-  const [campoImagem, setCampoImagem] = React.useState(undefined)
+  const toast = useToast()
+  const [campoImagem, setCampoImagem] = React.useState(undefined);
   const [campoTitulo, setCampoTitulo] = React.useState("");
   const [campoDescricao, setCampoDescricao] = React.useState("");
   const [campoRegiao, setCampoRegiao] = React.useState();
@@ -32,13 +35,20 @@ const TelaCadastroServico = (props) => {
       };
 
       await api.post("/servicos", servico);
-      alert("Anúncio cadastrado com sucesso!");
+      // alert("Anúncio cadastrado com sucesso!");
+      toast.show({
+        description: "Anúncio cadastrado com sucesso!",
+        placement: "top",
+      });
+
       setCampoTitulo("");
       setCampoDescricao("");
       setCampoRegiao("");
       setCampoBairro("");
 
-      props.navigation.navigate(TELAS.TELA_MEUS_ANUNCIOS);
+      props.navigation.navigate(TELAS.TELA_MEUS_ANUNCIOS, {
+        refresh: +new Date(),
+      });
     } catch (error) {
       alert(error.response.data);
     }
@@ -48,7 +58,7 @@ const TelaCadastroServico = (props) => {
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.containerImagem}>
-          <CampoImagem imagem={campoImagem} setImagem={setCampoImagem}/>
+          <CampoImagem imagem={campoImagem} setImagem={setCampoImagem} />
         </View>
 
         <CampoTextoCustomizadoSecundario
@@ -112,14 +122,9 @@ const TelaCadastroServico = (props) => {
           Anunciar
         </BotaoCustomizado> */}
 
-        <BotaoCustomizado
-          cor="primaria"
-          onPress={salvarServico}>
+        <BotaoCustomizado cor="primaria" onPress={salvarServico}>
           Anunciar
         </BotaoCustomizado>
-
-
-        
       </View>
     </ScrollView>
   );

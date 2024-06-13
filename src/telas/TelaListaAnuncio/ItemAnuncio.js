@@ -5,9 +5,9 @@ import TELAS from "../../comum/constantes/telas";
 
 const styles = StyleSheet.create({
   container: {
-    height: 88,
+    height: 104,
     backgroundColor: CORES.BRANCA,
-    borderRadius: 16,
+    borderRadius: 8,
     padding: 16,
     flexDirection: "row",
     gap: 16,
@@ -33,10 +33,11 @@ const ItemAnuncio = (props) => {
           }
         >
           <View style={styles.container}>
-          <Image source={{ uri: props.item.foto_produto }} style={{width: 48, height: 48}}/>
+          <Image source={{ uri: props.item.foto_produto }} style={{width: 56, height: 56}}/>
            <View>
             <Text style={styles.titulo}>{props.item.titulo}</Text>
             <Text>{props.item.bairro}</Text>
+            
            </View>
           </View>
         </Pressable>
@@ -52,7 +53,7 @@ const ItemAnuncio = (props) => {
           }
         >
           <View style={styles.container}>
-          <Image source={{ uri: props.item.foto_servico }} style={{width: 48, height: 48}}/>
+          <Image source={{ uri: props.item.foto_servico }} style={{width: 56, height: 56}}/>
           <View>
             <Text style={styles.titulo}>{props.item.titulo}</Text>
             <Text>{props.item.regiao}</Text>

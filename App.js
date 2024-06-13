@@ -59,7 +59,7 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator
           initialRouteName={
-            usuarioLogado ? TELAS.TELA_PRINCIPAL : TELAS.TELA_LOGIN
+            usuarioLogado ? TELAS.TELA_PRINCIPAL : TELAS.TELA_BOAS_VINDAS
           }
           screenOptions={{ cardStyle: { flex: 1 }, header: CabecalhoCustomizado }}
         >
@@ -82,7 +82,7 @@ export default function App() {
             <Stack.Screen
               name={TELAS.TELA_CADASTRO_USUARIO}
               component={TelaCadastroUsuario}
-              options={{ title: "CADASTRO", headerLeft: false }}
+              options={{ title: "CADASTRO", headerShown: false }}
             />
           </Stack.Group>
 
@@ -100,34 +100,25 @@ export default function App() {
               options={{ title: "LISTA ANUNCIO | PESQUISA" }}
             />
             {/* TELA ANUNCIO DETALHADO */}
-            <Stack.Screen
+            {/* <Stack.Screen
               name={TELAS.TELA_ANUNCIO_DETALHADO}
               component={TelaAnuncioDetalhado}
               options={{ title: "ANUNCIO DETALHADO" }}
-            />
-
-
-
-
-
+            /> */}
 
             {/* TELA ANUNCIO DETALHADO PRODUTO */}
             <Stack.Screen
               name={TELAS.TELA_ANUNCIO_DETALHADO_PRODUTO}
               component={TelaAnuncioDetalhadoProduto}
-              options={{ title: "ANUNCIO DETALHADO PRODUTO" }}
+              options={{ title: "ANÚNCIO | PRODUTO" }}
             />
 
             {/* TELA ANUNCIO DETALHADO SERVICO*/}
             <Stack.Screen
               name={TELAS.TELA_ANUNCIO_DETALHADO_SERVICO}
               component={TelaAnuncioDetalhadoServico}
-              options={{ title: "ANUNCIO DETALHADO SERVICO" }}
+              options={{ title: "ANUNCIO | SERVIÇO" }}
             />
-
-
-
-
 
             {/* TELA PERFIL USUARIO  */}
             <Stack.Screen
@@ -145,19 +136,19 @@ export default function App() {
             <Stack.Screen
               name={TELAS.TELA_EDITAR_CADASTRO_PRODUTO}
               component={TelaEditarCadastroProduto}
-              options={{ title: "EDITAR ANUNCIO | PRODUTO" }}
+              options={{ title: "EDITAR | PRODUTO" }}
             />
             {/* TELA CADASTRO SERVICO  */}
             <Stack.Screen
               name={TELAS.TELA_CADASTRO_SERVICO}
               component={TelaCadastroServico}
-              options={{ title: "CADASTRO SERVICO" }}
+              options={{ title: "CADASTRO SERVIÇO" }}
             />
             {/* TELA EDITAR CADASTRO SERVICO*/}
             <Stack.Screen
               name={TELAS.TELA_EDITAR_CADASTRO_SERVICO}
               component={TelaEditarCadastroServico}
-              options={{ title: "EDITAR ANUNCIO | SERVICO" }}
+              options={{ title: "EDITAR | SERVIÇO" }}
             />
             {/* TELA MEUS ANUNCIOS */}
             <Stack.Screen

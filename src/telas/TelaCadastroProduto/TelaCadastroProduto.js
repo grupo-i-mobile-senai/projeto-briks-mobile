@@ -17,8 +17,12 @@ import apiCep from "../../comum/servicos/apiCep";
 import api from "../../comum/servicos/api";
 import TELAS from "../../comum/constantes/telas";
 
+import { useToast } from "native-base";
+
 const TelaCadastroProduto = (props) => {
-  const [campoImagem, setCampoImagem] = React.useState(undefined)
+  const toast = useToast();
+
+  const [campoImagem, setCampoImagem] = React.useState(undefined);
   const [campoTitulo, setCampoTitulo] = React.useState("");
   const [campoDescricao, setCampoDescricao] = React.useState("");
   const [campoCep, setCampoCep] = React.useState("");
@@ -59,8 +63,16 @@ const TelaCadastroProduto = (props) => {
       };
 
       await api.post("/produtos", produto);
-      alert("Anúncio cadastrado com sucesso!");
-      props.navigation.navigate(TELAS.TELA_MEUS_ANUNCIOS, {refresh: +new Date()});
+      toast.show({
+        description: "Anúncio cadastrado com sucesso!",
+        placement: "top",
+      });
+
+      // alert("Anúncio cadastrado com sucesso!");
+      props.navigation.navigate(TELAS.TELA_MEUS_ANUNCIOS, {
+        refresh: +new Date(),
+      });
+
       // setCampoTitulo("");
       // setCampoDescricao("");
       // setCampoCep("");
@@ -70,15 +82,15 @@ const TelaCadastroProduto = (props) => {
       // props.navigation.navigate(TELAS.TELA_MEUS_ANUNCIOS);
     } catch (error) {
       alert(error.response.data);
-      console.log(error)
+      console.log(error);
     }
   };
 
   return (
     <ScrollView>
       <View style={styles.container}>
-      <View style={styles.containerImagem}>
-          <CampoImagem imagem={campoImagem} setImagem={setCampoImagem}/>
+        <View style={styles.containerImagem}>
+          <CampoImagem imagem={campoImagem} setImagem={setCampoImagem} />
         </View>
 
         <CampoTextoCustomizadoSecundario
@@ -143,12 +155,7 @@ const TelaCadastroProduto = (props) => {
           Anunciar
         </BotaoCustomizado> */}
 
-        <BotaoCustomizado
-          cor="primaria"
-          onPress={salvarProduto}
-            
-          
-        >
+        <BotaoCustomizado cor="primaria" onPress={salvarProduto}>
           Anunciar
         </BotaoCustomizado>
       </View>
