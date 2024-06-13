@@ -35,6 +35,14 @@ const TelaCadastroProduto = (props) => {
     } catch (error) {
       console.log("Erro: " + error);
     }
+    // try {
+    //   const response = await apiCep.get(`/${campoCep}/json/`);
+    //   setCampoRua(response.data.logradouro);
+    //   setCampoBairro(response.data.bairro);
+    //   setCampoCidade(response.data.localidade);
+    // } catch (error) {
+    //   console.log("Erro: " + error);
+    // }
   };
 
   const salvarProduto = async () => {

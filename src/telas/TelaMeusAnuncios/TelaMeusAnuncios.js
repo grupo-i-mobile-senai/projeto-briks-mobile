@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, Pressable, Text, View } from "react-native";
+import BotaoCustomizado from "../../comum/componentes/BotaoCustomizado/BotaoCustomizado";
 import ListaVazia from "../../comum/componentes/ListaVazia/ListaVazia";
 import SeparadorLista from "../../comum/componentes/SeparadorLista/SeparadorLista";
-import ItemMeusAnuncios from "./ItemMeusAnuncios";
-import BotaoCustomizado from "../../comum/componentes/BotaoCustomizado/BotaoCustomizado";
 import TELAS from "../../comum/constantes/telas";
+import ItemMeusAnuncios from "./ItemMeusAnuncios";
 import styles from "./TelaMeusAnunciosStyles";
 // import { CampoTextoCustomizadoPrimario } from "../../comum/componentes/CampoTextoCustomizado/CampoTextoCustomizado";
+import { Fab, Menu } from "native-base";
+import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 
 import api from "../../comum/servicos/api";
 
@@ -21,10 +23,12 @@ const TelaMeusAnuncios = (props) => {
 
   useEffect(() => {
     const pegarProdutosEServicosViaApi = async () => {
-      const responseProdutos = await api.get("/produtos");
-      const responseServicos = await api.get("/servicos");
+      const responseProdutos = await api.get(`/meus-produtos`);
+      const responseServicos = await api.get("/meus-servicos");
 
-      setMeusAnuncios(ordenarListagem([...responseProdutos.data, ...responseServicos.data]));
+      setMeusAnuncios(
+        ordenarListagem([...responseProdutos.data, ...responseServicos.data])
+      );
     };
 
     pegarProdutosEServicosViaApi();
@@ -62,6 +66,35 @@ const TelaMeusAnuncios = (props) => {
       >
         Tela Principal
       </BotaoCustomizado>
+      <Menu
+        w="160"
+        mr="4"
+        mb="2"
+        trigger={(triggerProps) => {
+          return (
+            <Fab
+              renderInPortal={false}
+              right={4}
+              bottom={20}
+              size="16"
+              shadow={2}
+              icon={<FontAwesome6 name="plus" size={24} />}
+              {...triggerProps}
+            />
+          );
+        }}
+      >
+        <Menu.Item
+          onPress={() => props.navigation.navigate(TELAS.TELA_CADASTRO_PRODUTO)}
+        >
+          Novo Produto
+        </Menu.Item>
+        <Menu.Item
+          onPress={() => props.navigation.navigate(TELAS.TELA_CADASTRO_SERVICO)}
+        >
+          Novo Serviço
+        </Menu.Item>
+      </Menu>
     </View>
   );
 };

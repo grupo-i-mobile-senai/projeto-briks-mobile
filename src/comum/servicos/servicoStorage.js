@@ -17,7 +17,7 @@ export async function atualizarItemStorage(chave, valor) {
   }
 }
 
-export async function limparStorage(chave) {
+export async function limparStorage(chave) {  
   try {
     await AsyncStorage.removeItem(chave);
   } catch {

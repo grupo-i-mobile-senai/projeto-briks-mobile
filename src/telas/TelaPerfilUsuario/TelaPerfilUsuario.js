@@ -8,6 +8,7 @@ import React, { useEffect } from "react";
 import api from "../../comum/servicos/api";
 import { atualizarItemStorage, pegarItemStorage } from "../../comum/servicos/servicoStorage";
 import { CHAVES_STORAGE } from "../../comum/constantes/chaves-storage";
+import TELAS from "../../comum/constantes/telas";
 
 const TelaPerfilUsuario = () => {
   const [campoNome, setCampoNome] = React.useState("");
@@ -84,6 +85,20 @@ const TelaPerfilUsuario = () => {
     // alert("Dados salvos com sucesso!");
   };
 
+  // const excluirPerfilUsuario = async () => {
+  //   try {
+  //     if (confirm('Tem certeza?')) {
+  //       await api.delete(`/usuarios/${props.route.params.usuario.id_usuario}`);
+  //       alert('Usuário excluido com sucesso!');
+  //       props.navigation.navigate(TELAS.TELA_BOAS_VINDAS, { refresh: +new Date() });
+  //     }
+  //   } catch (error) {
+  //     alert(error.response.data);
+  //   }
+  // };
+
+
+
   // Atualizar editable -> readOnly
   // https://reactnative.dev/docs/textinput#readonly
 
@@ -145,7 +160,9 @@ const TelaPerfilUsuario = () => {
 
         <View>
           {botaoExcluirConta && (
-            <BotaoCustomizado cor="primaria">Excluir Conta</BotaoCustomizado>
+            <BotaoCustomizado cor="primaria" >
+            Excluir Conta
+            </BotaoCustomizado>
           )}
         </View>
       </View>
