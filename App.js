@@ -9,7 +9,7 @@ import TelaBoasVindas from "./src/telas/TelaBoasVindas/TelaBoasVindas.js";
 import TelaLogin from "./src/telas/TelaLogin/TelaLogin";
 import TelaPrincipal from "./src/telas/TelaPrincipal/TelaPrincipal";
 import TelaCadastroUsuario from "./src/telas/TelaCadastroUsuario/TelaCadastroUsuario";
-import TelaAnuncioDetalhado from "./src/telas/TelaAnuncioDetalhado/TelaAnuncioDetalhado";
+// import TelaAnuncioDetalhado from "./src/telas/TelaAnuncioDetalhado/TelaAnuncioDetalhado";
 import TelaCadastroProduto from "./src/telas/TelaCadastroProduto/TelaCadastroProduto.js";
 import TelaPerfilUsuario from "./src/telas/TelaPerfilUsuario/TelaPerfilUsuario.js";
 import TelaCadastroServico from "./src/telas/TelaCadastroServico/TelaCadastroServico.js";
@@ -91,7 +91,7 @@ export default function App() {
             <Stack.Screen
               name={TELAS.TELA_PRINCIPAL}
               component={TelaPrincipal}
-              options={{ title: "PRINCIPAL", headerLeft: false }}
+              options={{ title: "", headerLeft: false }}
             />
             {/* TELA LISTA ANUNCIO */}
             <Stack.Screen

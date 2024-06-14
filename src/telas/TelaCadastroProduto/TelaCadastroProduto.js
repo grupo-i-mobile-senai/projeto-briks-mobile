@@ -69,7 +69,7 @@ const TelaCadastroProduto = (props) => {
       });
 
       // alert("Anúncio cadastrado com sucesso!");
-      props.navigation.navigate(TELAS.TELA_MEUS_ANUNCIOS, {
+      props.navigation.navigate(TELAS.TELA_PRINCIPAL, {
         refresh: +new Date(),
       });
 

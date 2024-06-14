@@ -6,11 +6,15 @@ import styles from "./TelaPerfilUsuarioStyles";
 import React, { useEffect } from "react";
 
 import api from "../../comum/servicos/api";
-import { atualizarItemStorage, pegarItemStorage } from "../../comum/servicos/servicoStorage";
+import {
+  atualizarItemStorage,
+  limparStorage,
+  pegarItemStorage,
+} from "../../comum/servicos/servicoStorage";
 import { CHAVES_STORAGE } from "../../comum/constantes/chaves-storage";
 import TELAS from "../../comum/constantes/telas";
 
-const TelaPerfilUsuario = () => {
+const TelaPerfilUsuario = (props) => {
   // const [campoFotoPerfil, setCampoFotoPerfil] = React.useState()
   const [campoNome, setCampoNome] = React.useState("");
   const [campoCpf, setCampoCpf] = React.useState("");
@@ -27,9 +31,10 @@ const TelaPerfilUsuario = () => {
   useEffect(() => {
     const carregarDadosUsuario = async () => {
       try {
+        const usuarioLogado = await pegarItemStorage(
+          CHAVES_STORAGE.USUARIO_LOGADO
+        );
 
-        const usuarioLogado = await pegarItemStorage(CHAVES_STORAGE.USUARIO_LOGADO);
-        
         // const response = await api.get("/perfil");
         setCampoNome(usuarioLogado.nome);
         setCampoCpf(usuarioLogado.cpf);
@@ -50,25 +55,24 @@ const TelaPerfilUsuario = () => {
     setBotaoSalvar(true);
     setBotaoEditar(false);
     setBotaoExcluirConta(false);
-
   };
 
   const salvarDados = async () => {
-
     try {
-      const usuarioLogado = await pegarItemStorage(CHAVES_STORAGE.USUARIO_LOGADO);
+      const usuarioLogado = await pegarItemStorage(
+        CHAVES_STORAGE.USUARIO_LOGADO
+      );
       const dadosPerfil = {
         id_usuario: usuarioLogado.id_usuario,
         // foto_perfil: campoFotoPerfil,
         nome: campoNome,
         cpf: campoCpf,
         email: campoEmail,
-        
       };
 
       await api.put("/perfil", dadosPerfil);
 
-      await atualizarItemStorage(CHAVES_STORAGE.USUARIO_LOGADO, dadosPerfil)
+      await atualizarItemStorage(CHAVES_STORAGE.USUARIO_LOGADO, dadosPerfil);
       console.log(dadosPerfil);
       // alert("Dados salvos com sucesso!");
       // setCampoNome('');
@@ -87,6 +91,11 @@ const TelaPerfilUsuario = () => {
     // alert("Dados salvos com sucesso!");
   };
 
+  const sairConta = () => {
+    limparStorage(CHAVES_STORAGE.USUARIO_LOGADO);
+    props.navigation.navigate(TELAS.TELA_LOGIN);
+  };
+
   // const excluirPerfilUsuario = async () => {
   //   try {
   //     if (confirm('Tem certeza?')) {
@@ -98,8 +107,6 @@ const TelaPerfilUsuario = () => {
   //     alert(error.response.data);
   //   }
   // };
-
-
 
   // Atualizar editable -> readOnly
   // https://reactnative.dev/docs/textinput#readonly
@@ -162,8 +169,8 @@ const TelaPerfilUsuario = () => {
 
         <View>
           {botaoExcluirConta && (
-            <BotaoCustomizado cor="primaria" >
-            Excluir Conta
+            <BotaoCustomizado cor="primaria" onPress={sairConta}>
+              Sair
             </BotaoCustomizado>
           )}
         </View>

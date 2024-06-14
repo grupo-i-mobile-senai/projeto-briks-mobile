@@ -37,6 +37,7 @@ const ItemAnuncio = (props) => {
            <View>
             <Text style={styles.titulo}>{props.item.titulo}</Text>
             <Text>{props.item.bairro}</Text>
+            <Text>Produto</Text>
             
            </View>
           </View>
@@ -57,6 +58,7 @@ const ItemAnuncio = (props) => {
           <View>
             <Text style={styles.titulo}>{props.item.titulo}</Text>
             <Text>{props.item.regiao}</Text>
+            <Text>Serviço</Text>
            </View>
           </View>
         </Pressable>

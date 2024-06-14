@@ -17,7 +17,7 @@ import api from "../../comum/servicos/api";
 import { useToast } from "native-base";
 
 const TelaCadastroServico = (props) => {
-  const toast = useToast()
+  const toast = useToast();
   const [campoImagem, setCampoImagem] = React.useState(undefined);
   const [campoTitulo, setCampoTitulo] = React.useState("");
   const [campoDescricao, setCampoDescricao] = React.useState("");
@@ -46,7 +46,7 @@ const TelaCadastroServico = (props) => {
       setCampoRegiao("");
       setCampoBairro("");
 
-      props.navigation.navigate(TELAS.TELA_MEUS_ANUNCIOS, {
+      props.navigation.navigate(TELAS.TELA_PRINCIPAL, {
         refresh: +new Date(),
       });
     } catch (error) {
