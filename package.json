@@ -1,0 +1,45 @@
+{
+  "name": "projeto-briks-mobile",
+  "version": "1.0.0",
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "start:tunnel": "expo start --tunnel",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "@expo/metro-runtime": "~3.1.3",
+    "@react-native-async-storage/async-storage": "^1.23.1",
+    "@react-navigation/bottom-tabs": "^6.5.20",
+    "@react-navigation/native": "^6.1.17",
+    "@react-navigation/stack": "^6.3.29",
+    "axios": "^1.7.2",
+    "cors": "^2.8.5",
+    "expo": "~50.0.14",
+    "expo-camera": "~14.1.3",
+    "expo-image-picker": "~14.7.1",
+    "expo-linear-gradient": "~12.7.2",
+    "expo-status-bar": "~1.11.1",
+    "express": "^4.19.2",
+    "mysql2": "^3.10.0",
+    "native-base": "^3.4.28",
+    "normalize-css-color": "^1.0.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-native": "0.73.6",
+    "react-native-gesture-handler": "~2.14.0",
+    "react-native-linear-gradient": "^2.8.3",
+    "react-native-paper": "^5.12.3",
+    "react-native-picker-select": "^9.1.3",
+    "react-native-safe-area-context": "3.3.2",
+    "react-native-screens": "~3.29.0",
+    "react-native-svg": "12.1.1",
+    "react-native-web": "~0.19.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0"
+  },
+  "private": true
+}
