@@ -98,7 +98,7 @@ export default function App() {
               <Stack.Screen
                 name={TELAS.TELA_LISTA_ANUNCIO}
                 component={TelaListaAnuncio}
-                options={{ title: "LISTA ANUNCIO | PESQUISA" }}
+                options={{ title: "LISTA ANÚNCIO | PESQUISA" }}
               />
               {/* TELA ANUNCIO DETALHADO */}
               {/* <Stack.Screen
@@ -118,14 +118,14 @@ export default function App() {
               <Stack.Screen
                 name={TELAS.TELA_ANUNCIO_DETALHADO_SERVICO}
                 component={TelaAnuncioDetalhadoServico}
-                options={{ title: "ANUNCIO | SERVIÇO" }}
+                options={{ title: "ANÚNCIO | SERVIÇO" }}
               />
 
               {/* TELA PERFIL USUARIO  */}
               <Stack.Screen
                 name={TELAS.TELA_PERFIL_USUARIO}
                 component={TelaPerfilUsuario}
-                options={{ title: "PERFIL USUARIO" }}
+                options={{ title: "PERFIL" }}
               />
               {/* TELA CADASTRO PRODUTO  */}
               <Stack.Screen
@@ -155,7 +155,7 @@ export default function App() {
               <Stack.Screen
                 name={TELAS.TELA_MEUS_ANUNCIOS}
                 component={TelaMeusAnuncios}
-                options={{ title: "MEUS ANUNCIOS" }}
+                options={{ title: "MEUS ANÚNCIOS" }}
               />
             </Stack.Group>
           </Stack.Navigator>

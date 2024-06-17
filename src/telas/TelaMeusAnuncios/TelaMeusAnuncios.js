@@ -11,6 +11,7 @@ import { Fab, Menu } from "native-base";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 
 import api from "../../comum/servicos/api";
+import CORES from "../../comum/constantes/cores";
 
 const ordenarListagem = (lista) => {
   return lista.sort((a, b) => {
@@ -34,19 +35,10 @@ const TelaMeusAnuncios = (props) => {
     pegarProdutosEServicosViaApi();
   }, [props.route.params?.refresh]);
 
-  // useEffect(() => {
-  //   const pegarServicosViaApi = async () => {
-  //     const response = await api.get("/servicos");
-  //     setMeusAnuncios((prev) => ordenarListagem([...prev, ...response.data]));
-  //   };
-
-  //   pegarServicosViaApi();
-  // }, [props.route.params?.refresh]);
-
   return (
     <View style={styles.container}>
       {/* COLOCAR CARD COM MEUS ANUNCIOS PUBLICADOS */}
-     
+
       <FlatList
         data={meusAnuncios}
         // renderItem={ItemListagemUsuarios}
@@ -56,12 +48,12 @@ const TelaMeusAnuncios = (props) => {
         keyExtractor={(item) => item.dt_alteracao}
       />
 
-      <BotaoCustomizado
+      {/* <BotaoCustomizado
         cor="secundaria"
         onPress={() => props.navigation.navigate(TELAS.TELA_PRINCIPAL)}
       >
         Tela Principal
-      </BotaoCustomizado>
+      </BotaoCustomizado> */}
       <Menu
         w="160"
         mr="4"
@@ -74,7 +66,7 @@ const TelaMeusAnuncios = (props) => {
               bottom={20}
               size="16"
               shadow={2}
-              icon={<FontAwesome6 name="plus" size={24} />}
+              icon={<FontAwesome6 name="plus" size={24} color={CORES.BRANCA} />}
               {...triggerProps}
             />
           );

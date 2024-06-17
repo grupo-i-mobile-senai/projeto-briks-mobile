@@ -13,8 +13,10 @@ import {
 } from "../../comum/servicos/servicoStorage";
 import { CHAVES_STORAGE } from "../../comum/constantes/chaves-storage";
 import TELAS from "../../comum/constantes/telas";
+import { useToast } from "native-base";
 
 const TelaPerfilUsuario = (props) => {
+  const toast = useToast();
   const [campoFotoPerfil, setCampoFotoPerfil] = React.useState(
     props.route.params?.usuario.foto_perfil || ""
   );
@@ -37,12 +39,10 @@ const TelaPerfilUsuario = (props) => {
           CHAVES_STORAGE.USUARIO_LOGADO
         );
 
-        // const response = await api.get("/perfil");
         setCampoFotoPerfil(usuarioLogado.foto_perfil);
         setCampoNome(usuarioLogado.nome);
         setCampoCpf(usuarioLogado.cpf);
         setCampoEmail(usuarioLogado.email);
-        // setCampoSenha(response.data[0].senha);
       } catch (error) {
         console.log("Erro: " + error);
       }
@@ -77,14 +77,18 @@ const TelaPerfilUsuario = (props) => {
 
       await atualizarItemStorage(CHAVES_STORAGE.USUARIO_LOGADO, dadosPerfil);
       console.log(dadosPerfil);
+
       // alert("Dados salvos com sucesso!");
-      // setCampoNome('');
-      // setCampoCpf("");
-      // setCampoEmail("");
-      // setCampoSenha("");
-      // props.navigation.navigate(TELAS.TELA_LOGIN);
+      toast.show({
+        description: "Dados salvos com sucesso!",
+        placement: "top",
+      });
     } catch (error) {
-      alert(error.response.data);
+      // alert(error.response.data);
+      toast.show({
+        description: error.response.data,
+        placement: "top",
+      });
     }
 
     setCampoEditavel(false);
