@@ -15,7 +15,9 @@ import { CHAVES_STORAGE } from "../../comum/constantes/chaves-storage";
 import TELAS from "../../comum/constantes/telas";
 
 const TelaPerfilUsuario = (props) => {
-  // const [campoFotoPerfil, setCampoFotoPerfil] = React.useState()
+  const [campoFotoPerfil, setCampoFotoPerfil] = React.useState(
+    props.route.params?.usuario.foto_perfil || ""
+  );
   const [campoNome, setCampoNome] = React.useState("");
   const [campoCpf, setCampoCpf] = React.useState("");
   const [campoEmail, setCampoEmail] = React.useState("");
@@ -36,6 +38,7 @@ const TelaPerfilUsuario = (props) => {
         );
 
         // const response = await api.get("/perfil");
+        setCampoFotoPerfil(usuarioLogado.foto_perfil);
         setCampoNome(usuarioLogado.nome);
         setCampoCpf(usuarioLogado.cpf);
         setCampoEmail(usuarioLogado.email);
@@ -64,7 +67,7 @@ const TelaPerfilUsuario = (props) => {
       );
       const dadosPerfil = {
         id_usuario: usuarioLogado.id_usuario,
-        // foto_perfil: campoFotoPerfil,
+        foto_perfil: campoFotoPerfil,
         nome: campoNome,
         cpf: campoCpf,
         email: campoEmail,
@@ -119,7 +122,18 @@ const TelaPerfilUsuario = (props) => {
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.containerImagem}>
-          <CampoImagem />
+          {!campoFotoPerfil && (
+            <CampoImagem
+              imagem={campoFotoPerfil}
+              setImagem={setCampoFotoPerfil}
+            />
+          )}
+          {campoFotoPerfil && (
+            <CampoImagem
+              imagem={campoFotoPerfil}
+              setImagem={setCampoFotoPerfil}
+            />
+          )}
         </View>
 
         <CampoTextoCustomizadoSecundario
