@@ -3,7 +3,8 @@ import { pegarItemStorage } from "./servicoStorage";
 import { CHAVES_STORAGE } from "../constantes/chaves-storage";
 
 let instancia = axios.create({
-  baseURL: "http://localhost:3000",
+  // baseURL: "http://localhost:3000",
+  baseURL: "https://briks-api.onrender.com",
 });
 
 instancia.interceptors.request.use(async (config) => {
